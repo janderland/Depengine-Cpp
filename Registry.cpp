@@ -11,7 +11,7 @@ void Registry::run(const std::string& product) const {
     }
     else {
         const Rule& rule = rules.at(product);
-        if (!rule.productExists()) {
+        if (rule.mustExecute()) {
             rule.runDependencies(this);
             rule.executeRule();
         }

@@ -11,7 +11,7 @@ Rule::Rule(std::string product, std::string command,
     dependencies(dependencies) { }
 
 
-bool Rule::productExists() const {
+bool Rule::mustExecute() const {
     std::cout << "Checking if \"" << this->product
         << "\" exists..." << std::endl;
 
@@ -20,11 +20,11 @@ bool Rule::productExists() const {
     {
         std::cout << "Product exists." << std::endl;
         fclose(file);
-        return true;
+        return false;
     }
     else {
         std::cout << "Product doesn't exist." << std::endl;
-        return false;
+        return true;
     }
 }
 

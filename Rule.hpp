@@ -16,7 +16,7 @@ public:
     Rule(std::string product, std::string command,
             std::vector<std::string>&& dependencies);
 
-    bool productExists() const;
+    bool mustExecute() const;
     void runDependencies(const Registry* registry) const;
     void executeRule() const;
 };
