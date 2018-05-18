@@ -7,5 +7,5 @@ int main() {
     registry.createRule("file1", "touch file1");
     registry.createRule("file2", "touch file2");
     registry.createRule("root", "touch root", "file1", "file2");
-    registry.run("root");
+    registry.get("root").run();
 }

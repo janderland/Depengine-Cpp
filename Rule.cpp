@@ -1,25 +1,48 @@
+#include <sys/stat.h>
 #include <iostream>
 #include <cstdio>
+
 #include "Rule.hpp"
 #include "Registry.hpp"
+#include "DepException.hpp"
 
 
-Rule::Rule(std::string product, std::string command,
-        std::vector<std::string>&& dependencies):
-    product(product),
-    command(command),
-    dependencies(dependencies) { }
+Rule::Rule(const std::string& product, const std::string& command,
+        std::vector<Dependency>&& dependencies):
+    _product(product),
+    _command(command),
+    _dependencies(dependencies) { }
 
 
-bool Rule::mustExecute() const {
-    std::cout << "Checking if \"" << this->product
-        << "\" exists..." << std::endl;
+struct FileInfo {
+    const bool exists;
+    const time_t lastChange;
+};
 
-    FILE* file = fopen(this->product.c_str(), "r");
-    if (file)
+
+FileInfo getInfo(const std::string& path) {
+    struct stat info;
+    if (stat(path.c_str(), &info)) {
+        if (errno == ENOENT) {
+            return { false, 0 };
+        }
+        else {
+            throw DepException("Failed to check product.");
+        }
+    }
+    else {
+        return { true, info.st_mtime };
+    }
+}
+
+
+bool mustExecute(const std::string& product) {
+    std::cout << "Checking \"" << product << std::endl;
+
+    const auto thisInfo = getInfo(product);
+    if (thisInfo.exists)
     {
         std::cout << "Product exists." << std::endl;
-        fclose(file);
         return false;
     }
     else {
@@ -29,26 +52,13 @@ bool Rule::mustExecute() const {
 }
 
 
-void Rule::runDependencies(const Registry* registry) const {
-    std::cout << "Running dependencies for \""
-        << this->product << "\"." << std::endl;
-
-    for (const auto& dependency : this->dependencies) {
-        registry->run(dependency);
-    }
-
-    std::cout << "Finished dependencies for \""
-        << this->product << "\"." << std::endl;
-}
-
-
-void Rule::executeRule() const {
-    std::cout << "Executing command \"" << this->command
+void execute(const std::string& command) {
+    std::cout << "Executing command \"" << command
         << "\"..." << std::endl;
 
     FILE* pipe = popen("bash", "w");
     if (pipe) {
-        fprintf(pipe, "%s\n", this->command.c_str());
+        fprintf(pipe, "%s\n", command.c_str());
         if (pclose(pipe) != 0) {
             std::cerr << "Command failed on exit."
                 << std::endl;
@@ -57,5 +67,20 @@ void Rule::executeRule() const {
     else {
         std::cerr << "Command failed on start."
             << std::endl;
+    }
+}
+
+
+void run(const std::vector<Dependency>& dependencies) {
+    for (const auto& dependency : dependencies) {
+        dependency.get().run();
+    }
+}
+
+
+void Rule::run() const {
+    ::run(_dependencies);
+    if (mustExecute(_product)) {
+        execute(_command);
     }
 }

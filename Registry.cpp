@@ -1,19 +1,18 @@
 #include <iostream>
 #include <utility>
+#include <sstream>
+
+#include "DepException.hpp"
 #include "Registry.hpp"
 #include "Rule.hpp"
 
 
-void Registry::run(const std::string& product) const {
+const Rule& Registry::get(const std::string& product) const {
     if (rules.find(product) == rules.end()) {
-        std::cerr << "No rule found for \"" << product
-            << "\"." << std::endl;
+        std::stringstream message;
+        message << "No rule found for \""
+            << product << "\".";
+        throw DepException(message.str());
     }
-    else {
-        const Rule& rule = rules.at(product);
-        if (rule.mustExecute()) {
-            rule.runDependencies(this);
-            rule.executeRule();
-        }
-    }
+    else return rules.at(product);
 }
