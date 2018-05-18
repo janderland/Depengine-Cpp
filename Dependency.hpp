@@ -2,8 +2,8 @@
 
 #include <string>
 
-class Rule;
 class Registry;
+class Rule;
 
 
 class Dependency {

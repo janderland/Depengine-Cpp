@@ -3,7 +3,6 @@
 #include <cstdio>
 
 #include "Rule.hpp"
-#include "Registry.hpp"
 #include "DepException.hpp"
 
 

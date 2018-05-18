@@ -4,7 +4,6 @@
 
 #include "DepException.hpp"
 #include "Registry.hpp"
-#include "Rule.hpp"
 
 
 const Rule& Registry::get(const std::string& product) const {

@@ -4,8 +4,8 @@
 #include <string>
 #include <map>
 
-#include "Rule.hpp"
 #include "Dependency.hpp"
+#include "Rule.hpp"
 
 
 class Registry {

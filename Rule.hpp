@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-class Dependency;
+#include "Dependency.hpp"
 
 
 class Rule {
