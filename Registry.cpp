@@ -8,11 +8,12 @@
 
 
 const Rule& Registry::get(const std::string& product) const {
-    if (rules.find(product) == rules.end()) {
+    const auto& location = rules.find(product);
+    if (location == rules.end()) {
         std::stringstream message;
         message << "No rule found for \""
             << product << "\".";
         throw DepException(message.str());
     }
-    else return rules.at(product);
+    else return location->second;
 }
