@@ -3,7 +3,7 @@ FLAGS = -std=c++17 \
 		-Wextra \
 		-Werror
 
-SOURCE = $(shell find . -name '*.cpp')
+SOURCE = $(shell find source -name '*.cpp')
 OUTPUT = Depengine.run
 
 all: $(OUTPUT)
