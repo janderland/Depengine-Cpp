@@ -8,6 +8,11 @@ Dependency::Dependency(
     _registry(registry),
     _product(product) { }
 
+
+const std::string& Dependency::product() const {
+    return _product;
+}
+
         
 const Rule& Dependency::get() const {
     return _registry.get(_product);

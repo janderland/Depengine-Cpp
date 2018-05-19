@@ -1,5 +1,6 @@
 #include <sys/stat.h>
 #include <iostream>
+#include <sstream>
 #include <cstdio>
 
 #include "Rule.hpp"
@@ -19,14 +20,17 @@ struct FileInfo {
 };
 
 
-FileInfo getInfo(const std::string& path) {
+FileInfo getFileInfo(const std::string& path) {
     struct stat info;
     if (stat(path.c_str(), &info)) {
         if (errno == ENOENT) {
             return { false, 0 };
         }
         else {
-            throw DepException("Failed to check product.");
+            std::stringstream message;
+            message << "Failed to get file info for \""
+                << path << "\".";
+            throw DepException(message.str());
         }
     }
     else {
@@ -35,13 +39,31 @@ FileInfo getInfo(const std::string& path) {
 }
 
 
-bool mustExecute(const std::string& product) {
-    std::cout << "Checking \"" << product << std::endl;
+bool mustExecute(const std::string& product,
+        const std::vector<Dependency>& dependencies) {
+    std::cout << "Checking \"" << product  << "\"." << std::endl;
 
-    const auto thisInfo = getInfo(product);
-    if (thisInfo.exists)
+    const auto prodFile = getFileInfo(product);
+    if (prodFile.exists)
     {
         std::cout << "Product exists." << std::endl;
+        for (const auto& dependency : dependencies) {
+            const auto depPath = dependency.product();
+            const auto depFile = getFileInfo(depPath);
+            if (depFile.exists) {
+                if (depFile.lastChange > prodFile.lastChange) {
+                    std::cout << "Dependency \"" << depPath
+                        << "\" is newer than product." << std::endl;
+                    return true;
+                }
+            }
+            else {
+                std::stringstream message;
+                message << "Dependency \"" << depPath
+                    << "\" doesn't exist." << std::endl;
+                throw DepException(message.str());
+            }
+        }
         return false;
     }
     else {
@@ -53,7 +75,7 @@ bool mustExecute(const std::string& product) {
 
 void execute(const std::string& command) {
     std::cout << "Executing command \"" << command
-        << "\"..." << std::endl;
+        << "\"." << std::endl;
 
     FILE* pipe = popen("bash", "w");
     if (pipe) {
@@ -79,7 +101,7 @@ void run(const std::vector<Dependency>& dependencies) {
 
 void Rule::run() const {
     ::run(_dependencies);
-    if (mustExecute(_product)) {
+    if (mustExecute(_product, _dependencies)) {
         execute(_command);
     }
 }

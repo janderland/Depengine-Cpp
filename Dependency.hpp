@@ -15,5 +15,6 @@ public:
     Dependency(const Registry& registry,
             const std::string& product);
 
+    const std::string& product() const;
     const Rule& get() const;
 };
