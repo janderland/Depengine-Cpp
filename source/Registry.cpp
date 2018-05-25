@@ -12,7 +12,7 @@ using std::make_pair;
 using std::move;
 
 
-const Rule& Registry::get(const string& product) const {
+const Rule& Registry::getRule(const string& product) const {
     REF location = rules.find(product);
     if (location == rules.end()) {
         stringstream message;

@@ -16,6 +16,6 @@ private:
     map<string, Rule> rules;
 
 public:
-    const Rule& get(const string& product) const;
+    const Rule& getRule(const string& product) const;
     void createRule(RuleDetails&& details);
 };

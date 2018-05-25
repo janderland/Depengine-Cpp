@@ -9,7 +9,7 @@ Rule::Rule(RuleDetails&& details, const Registry& registry):
 
 void Rule::runDependencies() const {
     for (REF dependency : _details.getDependencies()) {
-        _registry.get(dependency).run();
+        _registry.getRule(dependency).run();
     }
 }
 
