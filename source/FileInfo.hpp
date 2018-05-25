@@ -8,7 +8,7 @@ using std::string;
 
 
 struct FileInfo {
-    const bool _exists;
-    const time_t _lastChange;
+    const bool exists;
+    const time_t lastChange;
     static FileInfo get(const string& path);
 };
