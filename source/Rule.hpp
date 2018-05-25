@@ -3,18 +3,17 @@
 #include <string>
 #include <vector>
 
-#include "Dependency.hpp"
+#include "RuleDetails.hpp"
+class Registry;
 
 
 class Rule {
 private:
-    const std::string _product;
-    const std::string _command;
-    const std::vector<Dependency> _dependencies;
+    RuleDetails _details;
+    const Registry& _registry;
+    void runDependencies() const;
 
 public:
-    Rule(const std::string& product, const std::string& command,
-            std::vector<Dependency>&& dependencies);
-
+    Rule(RuleDetails&& details, const Registry& registry);
     void run() const;
 };

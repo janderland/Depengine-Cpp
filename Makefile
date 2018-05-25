@@ -1,4 +1,6 @@
-FLAGS = -std=c++17 \
+CXX = clang++
+
+FLAGS = -std=c++14 \
 		-Wall   \
 		-Wextra \
 		-Werror
@@ -10,7 +12,7 @@ all: $(OUTPUT)
 
 $(OUTPUT): $(SOURCE)
 	@echo "Compiling..."
-	@g++ $(FLAGS) $^ -o $@
+	@$(CXX) $(FLAGS) $^ -o $@
 
 run: $(OUTPUT)
 	@echo "Running..."

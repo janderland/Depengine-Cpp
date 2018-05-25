@@ -1,12 +1,18 @@
+#pragma once
+
 #include <exception>
+#include <string>
+
+using std::exception;
+using std::string;
 
 
-class DepException: public std::exception {
+class DepException: public exception {
 private:
-    std::string _message;
+    string _message;
 
 public:
-    DepException(const std::string& message):
+    DepException(const string& message):
         _message(message) { }
 
     virtual const char* what() const noexcept {
