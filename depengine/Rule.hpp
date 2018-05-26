@@ -2,8 +2,10 @@
 
 #include <string>
 #include <vector>
-
 #include "RuleDetails.hpp"
+
+
+namespace depengine {
 class Registry;
 
 
@@ -17,3 +19,6 @@ public:
     Rule(RuleDetails&& details, const Registry& registry);
     void run() const;
 };
+
+
+} // namespace depengine

@@ -3,6 +3,8 @@
 #include <exception>
 #include <string>
 
+
+namespace depengine {
 using std::exception;
 using std::string;
 
@@ -19,3 +21,6 @@ public:
         return _message.c_str();
     }
 };
+
+
+} // namespace depengine

@@ -7,12 +7,14 @@
 #include "depengine/Registry.hpp"
 #include "depengine/Rule.hpp"
 #include "depengine/Var.hpp"
-#include "MakException.hpp"
 
 using std::stringstream;
 using std::string;
 using std::cout;
 using std::endl;
+
+
+namespace maker {
 
 
 const string kName = "build";
@@ -35,6 +37,7 @@ string buildCommand(const string& name) {
 
 
 void buildInstructions(const string& name) {
+    using namespace depengine;
     VAL output = name + kSo;
     VAL source = name + kCpp;
 
@@ -60,7 +63,11 @@ void loadInstructions(const string& name) {
 }
 
 
+} // namespace maker
+
+
 int main() {
+    using namespace maker;
     buildInstructions(kName);
     loadInstructions(kName);
 }

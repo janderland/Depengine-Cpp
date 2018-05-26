@@ -5,6 +5,8 @@
 #include "Rule.hpp"
 #include "Var.hpp"
 
+
+namespace depengine {
 using std::cerr;
 using std::endl;
 
@@ -19,7 +21,7 @@ void Rule::runDependencies() const {
         catch (const DepException& err) {
             cerr << "Warning: "
                 << err.what()
-                << endl; 
+                << endl;
         }
     }
 }
@@ -31,3 +33,6 @@ void Rule::run() const {
         _details.execute();
     }
 }
+
+
+} // namespace depengine

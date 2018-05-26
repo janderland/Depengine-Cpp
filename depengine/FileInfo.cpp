@@ -1,6 +1,8 @@
 #include "DepException.hpp"
 #include "FileInfo.hpp"
 
+
+namespace depengine {
 using std::stringstream;
 
 
@@ -21,3 +23,6 @@ FileInfo FileInfo::get(const string& path) {
         return { true, info.st_mtime };
     }
 }
+
+
+} // namespace depengine

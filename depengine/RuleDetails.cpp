@@ -8,6 +8,8 @@
 #include "FileInfo.hpp"
 #include "Var.hpp"
 
+
+namespace depengine {
 using std::stringstream;
 using std::cout;
 using std::endl;
@@ -82,3 +84,6 @@ void RuleDetails::execute() const {
         throw DepException("Failed to start shell.");
     }
 }
+
+
+} // namespace depengine

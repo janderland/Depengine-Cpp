@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+
+namespace depengine {
 using std::string;
 using std::vector;
 
@@ -24,3 +26,6 @@ public:
     bool mustExecute() const;
     void execute() const;
 };
+
+
+} // namespace depengine

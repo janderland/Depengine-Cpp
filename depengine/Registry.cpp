@@ -7,6 +7,8 @@
 #include "Rule.hpp"
 #include "Var.hpp"
 
+
+namespace depengine {
 using std::stringstream;
 using std::make_pair;
 using std::move;
@@ -28,3 +30,6 @@ void Registry::createRule(RuleDetails&& details) {
     rules.emplace(make_pair(details.getProduct(),
         Rule(move(details), *this)));
 }
+
+
+} // namespace depengine

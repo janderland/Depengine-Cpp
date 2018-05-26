@@ -4,9 +4,10 @@
 #include <string>
 #include <map>
 
+
+namespace depengine {
 using std::string;
 using std::map;
-
 class RuleDetails;
 class Rule;
 
@@ -19,3 +20,6 @@ public:
     const Rule& getRule(const string& product) const;
     void createRule(RuleDetails&& details);
 };
+
+
+} // namespace depengine
