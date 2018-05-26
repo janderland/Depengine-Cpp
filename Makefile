@@ -1,22 +1,32 @@
 CXX = clang++
 
 FLAGS = -std=c++14 \
-		-Wall   \
 		-Wextra \
-		-Werror
+		-Werror \
+		-Wall   \
+        -I. \
+		-g
 
-SOURCE = $(shell find source -name '*.cpp')
+FLAGS += -lboost_filesystem \
+         -lboost_system
+
+DEPENGINE = $(shell find depengine -name '*.cpp')
+MAKER = $(shell find maker -name '*.cpp')
 OUTPUT = Depengine.run
 
 all: $(OUTPUT)
 
-$(OUTPUT): $(SOURCE)
+$(OUTPUT): $(DEPENGINE) $(MAKER)
 	@echo "Compiling..."
 	@$(CXX) $(FLAGS) $^ -o $@
 
 run: $(OUTPUT)
 	@echo "Running..."
 	@./$<
+
+rund: $(OUTPUT)
+	@echo "Running..."
+	@lldb ./$<
 
 clean:
 	@echo "Cleaning..."

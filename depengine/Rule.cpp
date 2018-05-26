@@ -1,6 +1,12 @@
+#include <iostream>
+
+#include "DepException.hpp"
 #include "Registry.hpp"
 #include "Rule.hpp"
 #include "Var.hpp"
+
+using std::cerr;
+using std::endl;
 
 
 Rule::Rule(RuleDetails&& details, const Registry& registry):
@@ -9,7 +15,12 @@ Rule::Rule(RuleDetails&& details, const Registry& registry):
 
 void Rule::runDependencies() const {
     for (REF dependency : _details.getDependencies()) {
-        _registry.getRule(dependency).run();
+        try { _registry.getRule(dependency).run(); }
+        catch (const DepException& err) {
+            cerr << "Warning: "
+                << err.what()
+                << endl; 
+        }
     }
 }
 

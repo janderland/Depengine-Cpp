@@ -5,11 +5,11 @@
 
 #include "DepException.hpp"
 #include "RuleDetails.hpp"
+#include "FileInfo.hpp"
 #include "Var.hpp"
 
 using std::stringstream;
 using std::cout;
-using std::cerr;
 using std::endl;
 
 
@@ -27,33 +27,10 @@ const string& RuleDetails::getProduct() const {
 }
 
 
-const vector<string>& RuleDetails::getDependencies() const {
+const vector<string>&
+        RuleDetails::getDependencies() const {
     return _dependencies;
 }
-
-
-struct FileInfo {
-    const bool exists;
-    const time_t lastChange;
-
-    static FileInfo get(const string& path) {
-        struct stat info;
-        if (stat(path.c_str(), &info)) {
-            if (errno == ENOENT) {
-                return { false, 0 };
-            }
-            else {
-                stringstream message;
-                message << "Failed to get file info for \""
-                    << path << "\".";
-                throw DepException(message.str());
-            }
-        }
-        else {
-            return { true, info.st_mtime };
-        }
-    }
-};
 
 
 bool RuleDetails::mustExecute() const {
@@ -98,12 +75,10 @@ void RuleDetails::execute() const {
     if (pipe) {
         fprintf(pipe, "%s\n", _command.c_str());
         if (pclose(pipe) != 0) {
-            cerr << "Command failed on exit."
-                << endl;
+            throw DepException("Command failed on exit.");
         }
     }
     else {
-        cerr << "Command failed on start."
-            << endl;
+        throw DepException("Failed to start shell.");
     }
 }
