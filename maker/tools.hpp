@@ -1,5 +1,6 @@
 #include <boost/dll/alias.hpp>
 
+#include "depengine/ShellAction.hpp"
 #include "depengine/RuleDetails.hpp"
 #include "depengine/Registry.hpp"
 #include "depengine/Rule.hpp"
@@ -19,13 +20,24 @@ depengine::Registry& getRegistry() {
 }
 
 
-void rule(std::string name, std::vector<std::string> dependencies, std::string command) {
-    getRegistry().createRule(depengine::RuleDetails(name, command, dependencies));
+void rule(std::string name,
+        std::vector<std::string> dependencies, std::string command) {
+    getRegistry().createRule(
+        depengine::RuleDetails(
+            name, dependencies,
+            depengine::ShellAction(command)
+        )
+    );
 }
 
 
 void rule(std::string name, std::string command) {
-    getRegistry().createRule(depengine::RuleDetails(name, command));
+    getRegistry().createRule(
+        depengine::RuleDetails(
+            name, { },
+            depengine::ShellAction(command)
+        )
+    );
 }
 
 
@@ -34,5 +46,5 @@ void run(std::string name) {
 }
 
 
-} // tools
-} // maker
+} // namespace tools
+} // namespace maker

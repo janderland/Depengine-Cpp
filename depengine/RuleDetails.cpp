@@ -17,11 +17,11 @@ using std::endl;
 
 RuleDetails::RuleDetails(
         string product,
-        string command,
-        vector<string> dependencies):
+        vector<string> dependencies,
+        function<void()> action):
     _product(move(product)),
-    _command(move(command)),
-    _dependencies(move(dependencies)) { }
+    _dependencies(move(dependencies)),
+    _action(move(action)) { }
 
 
 const string& RuleDetails::getProduct() const {
@@ -70,19 +70,7 @@ bool RuleDetails::mustExecute() const {
 
 
 void RuleDetails::execute() const {
-    cout << "Executing command \"" << _command
-        << "\"." << endl;
-
-    FILE* pipe = popen("bash", "w");
-    if (pipe) {
-        fprintf(pipe, "%s\n", _command.c_str());
-        if (pclose(pipe) != 0) {
-            throw DepException("Command failed on exit.");
-        }
-    }
-    else {
-        throw DepException("Failed to start shell.");
-    }
+    _action();
 }
 
 

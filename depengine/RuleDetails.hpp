@@ -1,10 +1,12 @@
 #pragma once
 
+#include <functional>
 #include <string>
 #include <vector>
 
 
 namespace depengine {
+using std::function;
 using std::string;
 using std::vector;
 
@@ -12,14 +14,14 @@ using std::vector;
 class RuleDetails {
 private:
     const string _product;
-    const string _command;
     const vector<string> _dependencies;
+    const function<void()> _action;
 
 public:
     RuleDetails(
             string product,
-            string command,
-            vector<string> dependencies = vector<string>());
+            vector<string> dependencies,
+            function<void()> action);
 
     const string& getProduct() const;
     const vector<string>& getDependencies() const;

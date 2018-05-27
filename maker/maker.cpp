@@ -4,6 +4,7 @@
 #include <string>
 
 #include "depengine/RuleDetails.hpp"
+#include "depengine/ShellAction.hpp"
 #include "depengine/Registry.hpp"
 #include "depengine/Rule.hpp"
 #include "depengine/Var.hpp"
@@ -17,7 +18,8 @@ using std::endl;
 namespace maker {
 
 
-const string kName = "build";
+const string kFuncName = "build";
+const string kFileName = "build";
 const string kCpp = ".cpp";
 const string kSo = ".so";
 
@@ -27,36 +29,19 @@ const string kFlags = "-undefined dynamic_lookup "
                       "-I. ";
 
 
-string buildCommand(const string& name) {
+string buildCommand(const string& fileName) {
     stringstream command;
     command
-        << "g++ " << kFlags << name << kCpp
-        << " -o " << name << kSo;
+        << "g++ " << kFlags << fileName << kCpp
+        << " -o " << fileName << kSo;
     return command.str();
 }
 
 
-void buildInstructions(const string& name) {
-    using namespace depengine;
-    VAL output = name + kSo;
-    VAL source = name + kCpp;
-
-    Registry registry;
-    registry.createRule(
-        RuleDetails(
-            output,
-            buildCommand(name),
-            { source }
-        )
-    );
-    registry.getRule(output).run();
-}
-
-
-void loadInstructions(const string& name) {
+void load(const string& fileName, const string& funcName) {
     cout << "Loading build instructions." << endl;
     REF buildFunc = boost::dll::import_alias<void()>(
-            name + kSo, name
+            fileName + kSo, funcName
     );
     cout << "Running build." << endl;
     buildFunc();
@@ -67,7 +52,25 @@ void loadInstructions(const string& name) {
 
 
 int main() {
+    using namespace depengine;
     using namespace maker;
-    buildInstructions(kName);
-    loadInstructions(kName);
+
+    VAL source = kFileName + kCpp;
+    VAL output = kFileName + kSo;
+    VAL ruleName = "load";
+
+    Registry registry;
+    registry.createRule(
+        RuleDetails(
+            output, { source },
+            ShellAction(buildCommand(kFileName))
+        )
+    );
+    registry.createRule(
+        RuleDetails(
+            ruleName, { output },
+            [&]() { load(kFileName, kFuncName); }
+        )
+    );
+    registry.getRule(ruleName).run();
 }
