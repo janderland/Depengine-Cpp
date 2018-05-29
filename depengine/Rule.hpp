@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string>
-#include <vector>
 #include "RuleDetails.hpp"
 
 
@@ -11,12 +9,12 @@ class Registry;
 
 class Rule {
 private:
-    RuleDetails _details;
-    const Registry& _registry;
+    Registry& _registry;
+    const RuleDetails _details;
     void runDependencies() const;
 
 public:
-    Rule(RuleDetails&& details, const Registry& registry);
+    Rule(Registry& registry, const RuleDetails& details);
     void run() const;
 };
 

@@ -1,6 +1,8 @@
 #include <iostream>
 #include <utility>
 #include <sstream>
+#include <cassert>
+#include <regex>
 
 #include "DepException.hpp"
 #include "Registry.hpp"
@@ -11,24 +13,32 @@
 namespace depengine {
 using std::stringstream;
 using std::make_pair;
-using std::move;
 
 
-const Rule& Registry::getRule(const string& product) const {
-    REF location = rules.find(product);
-    if (location == rules.end()) {
+const Rule& Registry::getRule(const string& product) {
+    REF location = _rules.find(product);
+    if (location != _rules.end()) {
+        return location->second;
+    }
+    else {
+        for (REF pattern : _patterns) {
+            if (pattern.matches(product)) {
+                VAL result = _rules.emplace(make_pair(
+                    product, pattern.getRule(product)));
+                assert(result.second);
+                return result.first->second;
+            }
+        }
         stringstream message;
         message << "No rule found for \""
             << product << "\".";
         throw DepException(message.str());
     }
-    else return location->second;
 }
 
 
-void Registry::createRule(RuleDetails&& details) {
-    rules.emplace(make_pair(details.getProduct(),
-        Rule(move(details), *this)));
+void Registry::createRule(const RuleDetails& details) {
+    _patterns.emplace_back(*this, details);
 }
 
 

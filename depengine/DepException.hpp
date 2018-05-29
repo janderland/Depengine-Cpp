@@ -11,7 +11,7 @@ using std::string;
 
 class DepException: public exception {
 private:
-    string _message;
+    const string _message;
 
 public:
     DepException(const string& message):

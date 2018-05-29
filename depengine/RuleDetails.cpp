@@ -1,7 +1,5 @@
-#include <sys/stat.h>
 #include <iostream>
 #include <sstream>
-#include <cstdio>
 
 #include "DepException.hpp"
 #include "RuleDetails.hpp"
@@ -16,12 +14,12 @@ using std::endl;
 
 
 RuleDetails::RuleDetails(
-        string product,
-        vector<string> dependencies,
-        function<void()> action):
-    _product(move(product)),
-    _dependencies(move(dependencies)),
-    _action(move(action)) { }
+        const string& product,
+        const vector<string>& dependencies,
+        const Action& action):
+    _product(product),
+    _dependencies(dependencies),
+    _action(action) { }
 
 
 const string& RuleDetails::getProduct() const {
@@ -32,6 +30,11 @@ const string& RuleDetails::getProduct() const {
 const vector<string>&
         RuleDetails::getDependencies() const {
     return _dependencies;
+}
+
+
+const Action& RuleDetails::getAction() const {
+    return _action;
 }
 
 
@@ -70,7 +73,7 @@ bool RuleDetails::mustExecute() const {
 
 
 void RuleDetails::execute() const {
-    _action();
+    _action(_product, _dependencies);
 }
 
 

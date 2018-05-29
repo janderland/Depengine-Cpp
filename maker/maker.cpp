@@ -9,6 +9,8 @@
 #include "depengine/Rule.hpp"
 #include "depengine/Var.hpp"
 
+using boost::dll::program_location;
+using boost::dll::import_alias;
 using std::stringstream;
 using std::string;
 using std::cout;
@@ -40,7 +42,7 @@ string buildCommand(const string& fileName) {
 
 void load(const string& fileName, const string& funcName) {
     cout << "Loading build instructions." << endl;
-    REF buildFunc = boost::dll::import_alias<void()>(
+    REF buildFunc = import_alias<void()>(
             fileName + kSo, funcName
     );
     cout << "Running build." << endl;
@@ -55,6 +57,7 @@ int main() {
     using namespace depengine;
     using namespace maker;
 
+    VAL maker = program_location();
     VAL source = kFileName + kCpp;
     VAL output = kFileName + kSo;
     VAL ruleName = "load";
@@ -62,14 +65,16 @@ int main() {
     Registry registry;
     registry.createRule(
         RuleDetails(
-            output, { source },
+            output, { source, maker.c_str() },
             ShellAction(buildCommand(kFileName))
         )
     );
     registry.createRule(
         RuleDetails(
             ruleName, { output },
-            [&]() { load(kFileName, kFuncName); }
+            [&](const string&, const vector<string>&) {
+                load(kFileName, kFuncName);
+            }
         )
     );
     registry.getRule(ruleName).run();
