@@ -24,10 +24,6 @@ run: $(OUTPUT)
 	@echo "Running $<..."
 	@./$<
 
-rund: $(OUTPUT)
-	@echo "Running..."
-	@lldb ./$<
-
 clean:
 	@echo "Cleaning..."
 	@rm -f $(OUTPUT)
