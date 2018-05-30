@@ -4,7 +4,7 @@
 #include <vector>
 
 
-namespace maker {
+namespace treet {
 using std::vector;
 using std::string;
 
@@ -21,4 +21,4 @@ public:
 };
 
 
-} // namespace maker
+} // namespace treet

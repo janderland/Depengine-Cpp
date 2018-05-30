@@ -1,4 +1,4 @@
-CXX = clang++
+CXX = g++
 
 FLAGS = -std=c++14 \
         -Wextra \
@@ -10,13 +10,13 @@ FLAGS = -std=c++14 \
 FLAGS += -lboost_filesystem \
          -lboost_system
 
+TREET = $(shell find treet -name '*.cpp')
 DEPENGINE = $(shell find depengine -name '*.cpp')
-MAKER = $(shell find maker -name '*.cpp')
-OUTPUT = Maker.run
+OUTPUT = treet.run
 
 all: $(OUTPUT)
 
-$(OUTPUT): $(DEPENGINE) $(MAKER)
+$(OUTPUT): $(TREET) $(DEPENGINE)
 	@echo "Compiling $@..."
 	@$(CXX) $(FLAGS) $^ -o $@
 

@@ -17,7 +17,7 @@ using std::cout;
 using std::endl;
 
 
-namespace maker {
+namespace treet {
 
 
 const string kFuncName = "build";
@@ -50,12 +50,12 @@ void loadScript(const string& scriptLib, const string& funcName) {
 }
 
 
-} // namespace maker
+} // namespace treet
 
 
 int main() {
     using namespace depengine;
-    using namespace maker;
+    using namespace treet;
 
     VAL kLoadScript = "loadScript";
     VAL thisBinary = program_location();

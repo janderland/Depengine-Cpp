@@ -10,7 +10,7 @@
 #include "ShellAction.hpp"
 
 
-namespace maker {
+namespace treet {
 using depengine::DepException;
 using boost::algorithm::join;
 using boost::replace_all;
@@ -88,4 +88,4 @@ void ShellAction::operator()(
 }
 
 
-} // namespace depengine
+} // namespace treet

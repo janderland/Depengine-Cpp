@@ -9,7 +9,7 @@
     BOOST_DLL_ALIAS(FUNC, build)
 
 
-namespace maker {
+namespace treet {
 namespace tools {
 
 
@@ -47,4 +47,4 @@ void run(std::string name) {
 
 
 } // namespace tools
-} // namespace maker
+} // namespace treet

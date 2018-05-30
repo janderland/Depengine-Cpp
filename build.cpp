@@ -1,8 +1,8 @@
-#include "maker/build.hpp"
+#include "treet/build.hpp"
 
 
 void build() {
-    using namespace maker::tools;
+    using namespace treet::tools;
 
 
     rule("root", { "file1", "file2" }, {

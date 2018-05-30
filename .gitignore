@@ -1,3 +1,7 @@
 *.run
 .ycm_extra_conf.py
 build.so
+
+root
+file1
+file2
