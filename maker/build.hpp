@@ -1,9 +1,8 @@
-#include <boost/dll/alias.hpp>
-
-#include "depengine/ShellAction.hpp"
 #include "depengine/RuleDetails.hpp"
 #include "depengine/Registry.hpp"
+#include <boost/dll/alias.hpp>
 #include "depengine/Rule.hpp"
+#include "ShellAction.hpp"
 
 
 #define MAKER_ENTRY(FUNC) \
@@ -21,21 +20,22 @@ depengine::Registry& getRegistry() {
 
 
 void rule(std::string name,
-        std::vector<std::string> dependencies, std::string command) {
+        std::vector<std::string> dependencies,
+        std::vector<std::string> commands) {
     getRegistry().createRule(
         depengine::RuleDetails(
             name, dependencies,
-            depengine::ShellAction(command)
+            ShellAction(commands)
         )
     );
 }
 
 
-void rule(std::string name, std::string command) {
+void rule(std::string name, std::vector<std::string> commands) {
     getRegistry().createRule(
         depengine::RuleDetails(
             name, { },
-            depengine::ShellAction(command)
+            ShellAction(commands)
         )
     );
 }

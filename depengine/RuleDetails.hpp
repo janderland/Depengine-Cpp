@@ -32,6 +32,7 @@ public:
     const string& getProduct() const;
     const vector<string>& getDependencies() const;
     const Action& getAction() const;
+
     bool mustExecute() const;
     void execute() const;
 };

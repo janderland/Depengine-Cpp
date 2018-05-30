@@ -7,7 +7,7 @@
 
 
 namespace depengine {
-using std::cerr;
+using std::cout;
 using std::endl;
 
 
@@ -20,8 +20,7 @@ void Rule::runDependencies() const {
         const Rule* rule = nullptr;
         try { rule = &_registry.getRule(dependency); }
         catch (const DepException& err) {
-            cerr << "Warning: "
-                 << err.what()
+            cout << err.what()
                  << endl;
         }
         if (rule) rule->run();

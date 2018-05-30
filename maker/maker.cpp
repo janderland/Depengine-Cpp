@@ -4,10 +4,10 @@
 #include <string>
 
 #include "depengine/RuleDetails.hpp"
-#include "depengine/ShellAction.hpp"
 #include "depengine/Registry.hpp"
 #include "depengine/Rule.hpp"
 #include "depengine/Var.hpp"
+#include "ShellAction.hpp"
 
 using boost::dll::program_location;
 using boost::dll::import_alias;
@@ -40,12 +40,12 @@ string buildCommand(const string& fileName) {
 }
 
 
-void load(const string& fileName, const string& funcName) {
-    cout << "Loading build instructions." << endl;
+void loadScript(const string& scriptLib, const string& funcName) {
+    cout << "Loading script library." << endl;
     REF buildFunc = import_alias<void()>(
-            fileName + kSo, funcName
+            scriptLib, funcName
     );
-    cout << "Running build." << endl;
+    cout << "Running script." << endl;
     buildFunc();
 }
 
@@ -57,25 +57,25 @@ int main() {
     using namespace depengine;
     using namespace maker;
 
-    VAL maker = program_location();
-    VAL source = kFileName + kCpp;
-    VAL output = kFileName + kSo;
-    VAL ruleName = "load";
+    VAL kLoadScript = "loadScript";
+    VAL thisBinary = program_location();
+    VAL scriptFile = kFileName + kCpp;
+    VAL scriptLib = kFileName + kSo;
 
     Registry registry;
     registry.createRule(
-        RuleDetails(
-            output, { source, maker.c_str() },
-            ShellAction(buildCommand(kFileName))
+        RuleDetails( // Build the script
+            scriptLib, { scriptFile, thisBinary.c_str() },
+            ShellAction({ buildCommand(kFileName) })
         )
     );
     registry.createRule(
-        RuleDetails(
-            ruleName, { output },
+        RuleDetails( // Load the script
+            kLoadScript, { scriptLib },
             [&](const string&, const vector<string>&) {
-                load(kFileName, kFuncName);
+                loadScript(scriptLib, kFuncName);
             }
         )
     );
-    registry.getRule(ruleName).run();
+    registry.getRule(kLoadScript).run();
 }

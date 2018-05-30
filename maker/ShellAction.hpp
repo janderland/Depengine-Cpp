@@ -4,24 +4,21 @@
 #include <vector>
 
 
-namespace depengine {
+namespace maker {
 using std::vector;
 using std::string;
 
 
 class ShellAction {
 private:
-    const string _command;
-
-    string replaceCodes(
-            const string& product, const vector<string>&) const;
+    const vector<string> _commands;
 
 public:
-    ShellAction(const string& command);
+    ShellAction(const vector<string>& commands);
 
     void operator()(const string& product,
             const vector<string>& dependencies) const;
 };
 
 
-} // namespace depengine
+} // namespace maker
