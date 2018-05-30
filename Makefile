@@ -4,7 +4,7 @@ FLAGS = -std=c++14 \
         -Wextra \
         -Werror \
         -Wall   \
-		-O2     \
+        -O2     \
         -I.
 
 FLAGS += -lboost_filesystem \
