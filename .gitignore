@@ -1,4 +1,3 @@
 *.run
 .ycm_extra_conf.py
-build.cpp
 build.so
