@@ -1,7 +1,5 @@
 #include "treet/build.hpp"
 #include <iostream>
-#include <string>
-#include <vector>
 
 
 void build() {
@@ -24,7 +22,7 @@ void build() {
 
     rule("dep", [] (auto, auto) {
         cout << "dep done run!"
-            << endl;
+             << endl;
     });
 
 
