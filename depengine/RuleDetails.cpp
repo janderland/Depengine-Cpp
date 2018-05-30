@@ -61,7 +61,8 @@ bool RuleDetails::mustExecute() const {
                 stringstream message;
                 message << "Dependency \"" << dependency
                     << "\" doesn't exist." << endl;
-                throw DepException(message.str());
+                // throw DepException(message.str());
+                cout << message.str();
             }
         }
         return false;

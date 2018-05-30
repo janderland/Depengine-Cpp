@@ -41,6 +41,28 @@ void rule(std::string name, std::vector<std::string> commands) {
 }
 
 
+void rule(std::string name,
+        std::vector<std::string> dependencies,
+        depengine::Action action) {
+    getRegistry().createRule(
+        depengine::RuleDetails(
+            name, dependencies,
+            action
+        )
+    );
+}
+
+
+void rule(std::string name, depengine::Action action) {
+    getRegistry().createRule(
+        depengine::RuleDetails(
+            name, { },
+            action
+        )
+    );
+}
+
+
 void run(std::string name) {
     getRegistry().getRule(name).run();
 }

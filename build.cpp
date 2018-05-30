@@ -1,8 +1,12 @@
 #include "treet/build.hpp"
+#include <iostream>
+#include <string>
+#include <vector>
 
 
 void build() {
     using namespace treet::tools;
+    using namespace std;
 
 
     rule("root", { "file1", "file2" }, {
@@ -12,9 +16,15 @@ void build() {
     });
 
 
-    rule("file1", {
+    rule("file1", { "dep" }, {
         "echo 'Making file1'",
         "touch file1"
+    });
+
+
+    rule("dep", [] (auto, auto) {
+        cout << "dep done run!"
+            << endl;
     });
 
 
