@@ -7,32 +7,26 @@ void build() {
     using namespace std;
 
 
-    rule("root", { "file1", "file2" }, {
-        "echo 'Root dependencies: $D'",
-        "echo 'The first dep is $d'",
-        "touch root"
+    rule("output", { "source1", "source2" }, {
+        "echo 'Get all dependencies using $D'",
+        "echo 'Get first dependency using $d'",
+        "cat $D > root",
     });
 
 
-    rule("file1", { "dep" }, {
-        "echo 'Making file1'",
-        "touch file1"
+    rule("source(\\d)", { "func$1" }, {
+        "echo 'Get product using $p'",
+        "echo '$p' > $p"
     });
 
 
-    rule("dep", [] (auto, auto) {
-        cout << "dep done run!"
+    rule("func(\\d)", [] (auto, auto) {
+        cout << "Running a C++ function"
              << endl;
     });
 
 
-    rule("file(\\d)", {
-        "echo 'Touching!'",
-        "touch $p"
-    });
-
-
-    run("root");
+    run("output");
 }
 
 
