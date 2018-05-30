@@ -66,16 +66,11 @@ int main() {
     registry.createRule(
         RuleDetails( // Build the script
             scriptLib, { scriptFile, thisBinary.c_str() },
-            ShellAction({ buildCommand(kFileName) })
-        )
-    );
+            ShellAction({ buildCommand(kFileName) })));
     registry.createRule(
         RuleDetails( // Load the script
-            kLoadScript, { scriptLib },
-            [&](const string&, const vector<string>&) {
+            kLoadScript, { scriptLib }, [&] (auto, auto) {
                 loadScript(scriptLib, kFuncName);
-            }
-        )
-    );
+            }));
     registry.getRule(kLoadScript).run();
 }
