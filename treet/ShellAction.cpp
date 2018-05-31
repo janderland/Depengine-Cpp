@@ -25,33 +25,31 @@ string replaceCodes(
         const string& command,
         const string& product,
         const vector<string>& dependencies) {
-    std::string newCommand = command;
 
+    auto replaceSymbol = [&](auto symbol, auto replace) {
+        if (dependencies.size() > 0) {
+            replace();
+        }
+        else {
+            stringstream message;
+            message
+                << "Command \"" << command << "\" "
+                   "has a \"" << symbol << "\" but "
+                   "this rule has no dependencies.";
+            throw DepException(message.str());
+        }
+    };
+
+    std::string newCommand = command;
     replace_all(newCommand, "$p", product);
 
-    if (dependencies.size() > 0) {
+    replaceSymbol("$d", [&] {
         replace_all(newCommand, "$d", dependencies[0]);
-    }
-    else if (newCommand.find("$d") != string::npos) {
-        stringstream message;
-        message
-            << "Command \"" << command << "\" "
-               "has a \"$d\" but this rule has "
-               "no dependencies.";
-        throw DepException(message.str());
-    }
+    });
 
-    if (dependencies.size() > 0) {
-        replace_all(newCommand, "$D", join(dependencies, ", "));
-    }
-    else if (newCommand.find("$D") != string::npos) {
-        stringstream message;
-        message
-            << "Command \"" << command << "\" "
-               "has a \"$D\" but this rule has "
-               "no dependencise.";
-        throw DepException(message.str());
-    }
+    replaceSymbol("$D", [&] {
+        replace_all(newCommand, "$D", join(dependencies, " "));
+    });
 
     return newCommand;
 }
@@ -62,9 +60,11 @@ ShellAction::ShellAction(const vector<string>& commands):
 
 
 void ShellAction::operator()(
-        const string& product,
-        const vector<string>& dependencies) const {
+            const string& product,
+            const vector<string>& dependencies) const {
+    cout << "Opening shell for commands..." << endl;
     FILE* pipe = popen("bash", "w");
+
     if (pipe) {
         for (REF cmdPattern : _commands) {
             VAL command
@@ -72,15 +72,14 @@ void ShellAction::operator()(
                                product,
                                dependencies);
 
-            cout
-                << "Piping command \"" << command
-                << "\"." << endl;
-
+            cout << "\"" << command << "\"." << endl;
             fprintf(pipe, "%s\n", command.c_str());
         }
+
         if (pclose(pipe) != 0) {
             throw DepException("One or more commands failed.");
         }
+        cout << "Shell closed." << endl;
     }
     else {
         throw DepException("Failed to start shell.");

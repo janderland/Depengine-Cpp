@@ -8,14 +8,14 @@ void build() {
 
 
     rule("output", { "source1", "source2" }, {
-        "echo 'Get all dependencies using $D'",
-        "echo 'Get first dependency using $d'",
-        "cat $D > root",
+        "echo 'All dependencies: $D'",
+        "echo 'First dependency: $d'",
+        "cat $D > output",
     });
 
 
     rule("source(\\d)", { "func$1" }, {
-        "echo 'Get product using $p'",
+        "echo 'Product: $p'",
         "echo '$p' > $p"
     });
 

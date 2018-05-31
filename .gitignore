@@ -1,6 +1,6 @@
 .ycm_extra_conf.py
 build.so
 *.run
-file1
-file2
-root
+source1
+source2
+output
