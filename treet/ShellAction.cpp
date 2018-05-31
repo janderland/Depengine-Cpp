@@ -72,7 +72,7 @@ void ShellAction::operator()(
                                product,
                                dependencies);
 
-            cout << "\"" << command << "\"." << endl;
+            fprintf(pipe, "echo \"\\\"%s\\\"\"\n", string(command).c_str());
             fprintf(pipe, "%s\n", command.c_str());
         }
 

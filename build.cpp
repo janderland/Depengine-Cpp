@@ -1,10 +1,11 @@
 #include "treet/build.hpp"
 #include <iostream>
 
+using namespace treet::tools;
+using namespace std;
 
-void build() {
-    using namespace treet::tools;
-    using namespace std;
+
+void build(const string& taskName) {
 
 
     rule("output", { "source1", "source2" }, {
@@ -16,7 +17,7 @@ void build() {
 
     rule("source(\\d)", { "func$1" }, {
         "echo 'Product: $p'",
-        "echo '$p' > $p"
+        "echo '$p' > $p",
     });
 
 
@@ -26,7 +27,7 @@ void build() {
     });
 
 
-    run("output");
+    run(taskName);
 }
 
 

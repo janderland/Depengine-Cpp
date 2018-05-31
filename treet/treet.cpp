@@ -42,11 +42,11 @@ string buildCommand(const string& fileName) {
 
 void loadScript(const string& scriptLib, const string& funcName) {
     cout << "Loading script library." << endl;
-    REF buildFunc = import_alias<void()>(
+    REF buildFunc = import_alias<void(const string&)>(
             scriptLib, funcName
     );
     cout << "Running script." << endl;
-    buildFunc();
+    buildFunc("output");
 }
 
 
