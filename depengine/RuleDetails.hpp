@@ -2,9 +2,10 @@
 
 #include <boost/any.hpp>
 #include <functional>
-#include "Action.hpp"
 #include <string>
 #include <vector>
+
+#include "Action.hpp"
 
 
 namespace depengine {

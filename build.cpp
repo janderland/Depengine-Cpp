@@ -4,7 +4,6 @@
 
 using namespace treet::tools;
 using namespace std;
-using boost::any;
 
 
 void build() {
@@ -26,9 +25,9 @@ void build() {
     rule("func(\\d)", [] (auto, auto) {
         cout << "Running a C++ function"
              << endl;
-        return any();
+        TREET_NO_PRODUCT
     });
 }
 
 
-MAKER_ENTRY(::build)
+TREET_ENTRY(::build)

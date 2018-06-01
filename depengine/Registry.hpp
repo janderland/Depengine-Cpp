@@ -1,17 +1,19 @@
 #pragma once
 
-#include "RulePattern.hpp"
-#include "boost/any.hpp"
 #include <vector>
 #include <string>
 #include <list>
 #include <map>
 
+#include "RulePattern.hpp"
+#include "RuleDetails.hpp"
+#include "boost/any.hpp"
+#include "Rule.hpp"
+
 
 namespace depengine {
 using namespace std;
 using boost::any;
-class RuleDetails;
 class Rule;
 
 

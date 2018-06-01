@@ -1,16 +1,17 @@
 #pragma once
 
-#include "Action.hpp"
 #include <string>
 #include <vector>
 #include <regex>
 
+#include "RuleDetails.hpp"
+#include "Action.hpp"
+#include "Rule.hpp"
+
 
 namespace depengine {
 using namespace std;
-class RuleDetails;
 class Registry;
-class Rule;
 
 
 class RulePattern {

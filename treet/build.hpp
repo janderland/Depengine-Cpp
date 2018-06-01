@@ -1,12 +1,18 @@
+#include <boost/dll/alias.hpp>
+#include <boost/any.hpp>
+
 #include "depengine/RuleDetails.hpp"
 #include "depengine/Registry.hpp"
-#include <boost/dll/alias.hpp>
 #include "depengine/Rule.hpp"
 #include "ShellAction.hpp"
 
 
-#define MAKER_ENTRY(FUNC) \
+#define TREET_ENTRY(FUNC) \
     BOOST_DLL_ALIAS(FUNC, build)
+
+
+#define TREET_NO_PRODUCT \
+    return boost::any();
 
 
 namespace treet {
@@ -61,11 +67,6 @@ void rule(std::string name, depengine::Action action) {
             action
         )
     );
-}
-
-
-void run(std::string name) {
-    getRegistry().getRule(name).run();
 }
 
 
