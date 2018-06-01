@@ -5,14 +5,13 @@
 #include <regex>
 
 #include "DepException.hpp"
+#include "RulePattern.hpp"
 #include "Registry.hpp"
 #include "Rule.hpp"
 #include "Var.hpp"
 
 
 namespace depengine {
-using std::stringstream;
-using std::make_pair;
 
 
 const Rule& Registry::getRule(const string& product) {
@@ -39,6 +38,11 @@ const Rule& Registry::getRule(const string& product) {
 
 void Registry::createRule(const RuleDetails& details) {
     _patterns.emplace_back(*this, details);
+}
+
+
+map<string, any>&  Registry::getProducts() {
+    return _products;
 }
 
 

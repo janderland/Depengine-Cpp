@@ -1,20 +1,15 @@
 #pragma once
 
+#include <boost/any.hpp>
 #include <functional>
+#include "Action.hpp"
 #include <string>
 #include <vector>
 
 
 namespace depengine {
-using std::function;
-using std::string;
-using std::vector;
-
-
-using Action = function<void(
-    const string& product,
-    const vector<string>& dependencies
-)>;
+using namespace std;
+using boost::any;
 
 
 class RuleDetails {
@@ -34,7 +29,7 @@ public:
     const Action& getAction() const;
 
     bool mustExecute() const;
-    void execute() const;
+    any execute() const;
 };
 
 

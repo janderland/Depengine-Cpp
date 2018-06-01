@@ -1,11 +1,13 @@
 #include "treet/build.hpp"
+#include "boost/any.hpp"
 #include <iostream>
 
 using namespace treet::tools;
 using namespace std;
+using boost::any;
 
 
-void build(const string& taskName) {
+void build() {
 
 
     rule("output", { "source1", "source2" }, {
@@ -24,10 +26,8 @@ void build(const string& taskName) {
     rule("func(\\d)", [] (auto, auto) {
         cout << "Running a C++ function"
              << endl;
+        return any();
     });
-
-
-    run(taskName);
 }
 
 

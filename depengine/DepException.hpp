@@ -5,8 +5,7 @@
 
 
 namespace depengine {
-using std::exception;
-using std::string;
+using namespace std;
 
 
 class DepException: public exception {

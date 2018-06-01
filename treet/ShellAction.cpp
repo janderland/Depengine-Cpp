@@ -59,7 +59,7 @@ ShellAction::ShellAction(const vector<string>& commands):
     _commands(commands) { }
 
 
-void ShellAction::operator()(
+any ShellAction::operator()(
             const string& product,
             const vector<string>& dependencies) const {
     cout << "Opening shell for commands..." << endl;
@@ -84,6 +84,8 @@ void ShellAction::operator()(
     else {
         throw DepException("Failed to start shell.");
     }
+
+    return any();
 }
 
 

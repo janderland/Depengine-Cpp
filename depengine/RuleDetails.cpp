@@ -3,14 +3,12 @@
 
 #include "DepException.hpp"
 #include "RuleDetails.hpp"
+#include "Registry.hpp"
 #include "FileInfo.hpp"
 #include "Var.hpp"
 
 
 namespace depengine {
-using std::stringstream;
-using std::cout;
-using std::endl;
 
 
 RuleDetails::RuleDetails(
@@ -45,7 +43,7 @@ bool RuleDetails::mustExecute() const {
     VAL prodFile = FileInfo::get(_product);
     if (prodFile.exists)
     {
-        cout << "\"" << _product << "\" exists." << endl;
+        cout << "\"" << _product << "\" exists on disk." << endl;
         for (REF dependency : _dependencies) {
             VAL depFile = FileInfo::get(dependency);
             if (depFile.exists) {
@@ -74,8 +72,8 @@ bool RuleDetails::mustExecute() const {
 }
 
 
-void RuleDetails::execute() const {
-    _action(_product, _dependencies);
+any RuleDetails::execute() const {
+    return _action(_product, _dependencies);
 }
 
 

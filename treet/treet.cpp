@@ -1,4 +1,5 @@
 #include <boost/dll.hpp>
+#include <functional>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -11,10 +12,8 @@
 
 using boost::dll::program_location;
 using boost::dll::import_alias;
-using std::stringstream;
-using std::string;
-using std::cout;
-using std::endl;
+using boost::any_cast;
+using namespace std;
 
 
 namespace treet {
@@ -40,13 +39,18 @@ string buildCommand(const string& fileName) {
 }
 
 
-void loadScript(const string& scriptLib, const string& funcName) {
+function<Registry&()> loadScript(
+        const string& scriptLib, const string& funcName) {
     cout << "Loading script library." << endl;
-    REF buildFunc = import_alias<void(const string&)>(
-            scriptLib, funcName
+    REF buildFunc = import_alias<void()>(
+        scriptLib, funcName
     );
     cout << "Running script." << endl;
-    buildFunc("output");
+    buildFunc();
+
+    return import_alias<Registry&()>(
+        scriptLib, "getRegistry"
+    );
 }
 
 
@@ -57,20 +61,26 @@ int main() {
     using namespace depengine;
     using namespace treet;
 
-    VAL kLoadScript = "loadScript";
+    VAL kLoadScript = "getRegistry";
     VAL thisBinary = program_location();
     VAL scriptFile = kFileName + kCpp;
     VAL scriptLib = kFileName + kSo;
 
     Registry registry;
-    registry.createRule(
-        RuleDetails( // Build the script
-            scriptLib, { scriptFile, thisBinary.c_str() },
-            ShellAction({ buildCommand(kFileName) })));
-    registry.createRule(
-        RuleDetails( // Load the script
-            kLoadScript, { scriptLib }, [&] (auto, auto) {
-                loadScript(scriptLib, kFuncName);
-            }));
+
+    // Build the script
+    registry.createRule(RuleDetails(
+        scriptLib, { scriptFile, thisBinary.c_str() },
+        ShellAction({ buildCommand(kFileName) })));
+
+    // Load the script
+    registry.createRule(RuleDetails(
+        kLoadScript, { scriptLib }, [&] (auto, auto) {
+            return any(loadScript(scriptLib, kFuncName));
+        }));
+
     registry.getRule(kLoadScript).run();
+    any& getRegistry = registry.getProducts()[kLoadScript];
+    auto& otherReg = any_cast<function<Registry&()>>(getRegistry)();
+    otherReg.getRule("output").run();
 }

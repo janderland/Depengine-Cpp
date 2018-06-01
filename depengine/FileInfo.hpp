@@ -4,7 +4,7 @@
 
 
 namespace depengine {
-using std::string;
+using namespace std;
 
 
 struct FileInfo {

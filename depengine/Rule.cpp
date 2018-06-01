@@ -7,8 +7,6 @@
 
 
 namespace depengine {
-using std::cout;
-using std::endl;
 
 
 Rule::Rule(Registry& registry, const RuleDetails& details):
@@ -31,7 +29,12 @@ void Rule::runDependencies() const {
 void Rule::run() const {
     runDependencies();
     if (_details.mustExecute()) {
-        _details.execute();
+        VAL result = _details.execute();
+        if (!result.empty()) {
+            _registry.getProducts()
+                     .emplace(make_pair(
+                        _details.getProduct(), result));
+        }
     }
 }
 

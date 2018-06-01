@@ -10,6 +10,7 @@
 
 
 namespace treet {
+
 namespace tools {
 
 
@@ -69,4 +70,8 @@ void run(std::string name) {
 
 
 } // namespace tools
+
 } // namespace treet
+
+
+BOOST_DLL_ALIAS(treet::tools::getRegistry, getRegistry)

@@ -1,8 +1,10 @@
 #include "RulePattern.hpp"
+#include "RuleDetails.hpp"
+#include "Rule.hpp"
+#include "Var.hpp"
 
 
 namespace depengine {
-using std::regex_constants::format_no_copy;
 
 
 vector<string> RulePattern::getDependencies(
@@ -11,7 +13,7 @@ vector<string> RulePattern::getDependencies(
     for (REF depPattern : _depPatterns) {
         filled.emplace_back(regex_replace(
             product, _prodPattern, depPattern,
-            format_no_copy));
+            regex_constants::format_no_copy));
     }
     return filled;
 }

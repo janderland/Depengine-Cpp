@@ -6,7 +6,6 @@
 
 
 namespace depengine {
-using std::stringstream;
 
 
 FileInfo FileInfo::get(const string& path) {

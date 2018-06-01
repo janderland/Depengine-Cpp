@@ -4,6 +4,7 @@
 
 
 namespace depengine {
+using namespace std;
 class Registry;
 
 
