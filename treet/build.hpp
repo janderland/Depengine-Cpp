@@ -21,7 +21,8 @@ namespace tools {
 depengine::Depengine engine;
 
 
-void rule(std::string name,
+void rule(
+        std::string name,
         std::vector<std::string> dependencies,
         std::vector<std::string> commands) {
     engine.createRule(
@@ -32,7 +33,9 @@ void rule(std::string name,
 }
 
 
-void rule(std::string name, std::vector<std::string> commands) {
+void rule(
+        std::string name,
+        std::vector<std::string> commands) {
     engine.createRule(
         name,
         { },
@@ -41,7 +44,8 @@ void rule(std::string name, std::vector<std::string> commands) {
 }
 
 
-void rule(std::string name,
+void rule(
+        std::string name,
         std::vector<std::string> dependencies,
         depengine::Action action) {
     engine.createRule(
@@ -52,7 +56,9 @@ void rule(std::string name,
 }
 
 
-void rule(std::string name, depengine::Action action) {
+void rule(
+        std::string name,
+        depengine::Action action) {
     engine.createRule(
         name,
         { },
