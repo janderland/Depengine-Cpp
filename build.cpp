@@ -1,5 +1,4 @@
 #include "treet/build.hpp"
-#include "boost/any.hpp"
 #include <iostream>
 
 using namespace treet::tools;
@@ -7,8 +6,6 @@ using namespace std;
 
 
 void build() {
-
-
     rule("output", { "source1", "source2" }, {
         "echo 'All dependencies: $D'",
         "echo 'First dependency: $d'",
@@ -30,4 +27,4 @@ void build() {
 }
 
 
-TREET_ENTRY(::build)
+TREET_SETUP(::build)

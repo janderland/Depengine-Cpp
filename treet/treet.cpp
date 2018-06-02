@@ -1,25 +1,23 @@
+#include <boost/shared_ptr.hpp>
 #include <boost/dll.hpp>
 #include <functional>
 #include <iostream>
 #include <sstream>
 #include <string>
 
-#include "depengine/RuleDetails.hpp"
-#include "depengine/Registry.hpp"
-#include "depengine/Rule.hpp"
-#include "depengine/Var.hpp"
+#include "depengine/Depengine.hpp"
 #include "ShellAction.hpp"
-
-using boost::dll::program_location;
-using boost::dll::import_alias;
-using boost::any_cast;
-using namespace std;
 
 
 namespace treet {
+using boost::dll::program_location;
+using boost::dll::import_alias;
+using namespace depengine;
+using namespace std;
 
 
-const string kFuncName = "build";
+const string kGetEngineFuncName = "engine";
+const string kSetupFuncName = "setup";
 const string kFileName = "build";
 const string kCpp = ".cpp";
 const string kSo = ".so";
@@ -39,17 +37,19 @@ string buildCommand(const string& fileName) {
 }
 
 
-function<Registry&()> loadScript(
-        const string& scriptLib, const string& funcName) {
+auto loadScript(
+        const string& scriptLib,
+        const string& setupFuncName,
+        const string& scriptEngineName) {
     cout << "Loading script library." << endl;
-    REF buildFunc = import_alias<void()>(
-        scriptLib, funcName
+    REF setupFunc = import_alias<void()>(
+        scriptLib, setupFuncName
     );
     cout << "Running script." << endl;
-    buildFunc();
+    setupFunc();
 
-    return import_alias<Registry&()>(
-        scriptLib, "getRegistry"
+    return import_alias<Depengine>(
+        scriptLib, scriptEngineName
     );
 }
 
@@ -58,29 +58,40 @@ function<Registry&()> loadScript(
 
 
 int main() {
-    using namespace depengine;
     using namespace treet;
-
-    VAL kLoadScript = "getRegistry";
+    VAL kLoadScript = "loadScript";
     VAL thisBinary = program_location();
     VAL scriptFile = kFileName + kCpp;
     VAL scriptLib = kFileName + kSo;
 
-    Registry registry;
+    Depengine boostrapper;
 
     // Build the script
-    registry.createRule(RuleDetails(
-        scriptLib, { scriptFile, thisBinary.c_str() },
-        ShellAction({ buildCommand(kFileName) })));
-
-    // Load the script
-    registry.createRule(RuleDetails(
-        kLoadScript, { scriptLib }, [&] (auto, auto) {
-            return any(loadScript(scriptLib, kFuncName));
+    boostrapper.createRule(
+        scriptLib,
+        { scriptFile, thisBinary.c_str() },
+        ShellAction({
+            buildCommand(kFileName)
         }));
 
-    registry.getRule(kLoadScript).run();
-    any& getRegistry = registry.getProducts()[kLoadScript];
-    auto& otherReg = any_cast<function<Registry&()>>(getRegistry)();
-    otherReg.getRule("output").run();
+    // Load the script
+    boostrapper.createRule(
+        kLoadScript,
+        { scriptLib },
+        [&] (auto, auto) {
+            return loadScript(
+                    scriptLib,
+                    kSetupFuncName,
+                    kGetEngineFuncName);
+        });
+
+    boostrapper.getRule(kLoadScript).run();
+
+
+    MUTABLE_VAL scriptEngine =
+        boostrapper.getProduct<
+            boost::shared_ptr<Depengine>
+        >(kLoadScript);
+
+    scriptEngine->getRule("output").run();
 }
