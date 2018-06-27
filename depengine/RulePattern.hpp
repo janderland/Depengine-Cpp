@@ -22,15 +22,18 @@ private:
     const Action _action;
 
     vector<string> getDependencies(
-            const string& product) const;
+        const string& product) const;
 
 public:
     RulePattern(
-            Registry& registry,
-            const RuleDetails& details);
+        Registry& registry,
+        const RuleDetails& details);
 
     bool matches(const string& product) const;
-    Rule getRule(const string& product) const;
+
+    Rule getRule(
+        const string& product,
+        function<void(any)> setter) const;
 };
 
 

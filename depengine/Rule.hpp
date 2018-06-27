@@ -11,11 +11,15 @@ class Registry;
 class Rule {
 private:
     Registry& _registry;
+    function<void(any)> _setter;
     const RuleDetails _details;
     void runDependencies() const;
 
 public:
-    Rule(Registry& registry, const RuleDetails& details);
+    Rule(Registry& registry,
+        function<void(any)>& setter,
+        const RuleDetails& details);
+
     void run() const;
 };
 

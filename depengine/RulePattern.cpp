@@ -35,9 +35,10 @@ bool RulePattern::matches(
 
 
 Rule RulePattern::getRule(
-        const string& product) const {
+        const string& product,
+        function<void(any)> setter) const {
     return Rule(
-        _registry,
+        _registry, setter,
         RuleDetails(
             product,
             getDependencies(product),

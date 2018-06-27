@@ -21,9 +21,9 @@ private:
 
 public:
     RuleDetails(
-            const string& product,
-            const vector<string>& dependencies,
-            const Action& action);
+        const string& product,
+        const vector<string>& dependencies,
+        const Action& action);
 
     const string& getProduct() const;
     const vector<string>& getDependencies() const;

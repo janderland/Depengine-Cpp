@@ -22,8 +22,13 @@ const Rule& Registry::getRule(const string& product) {
     else {
         for (REF pattern : _patterns) {
             if (pattern.matches(product)) {
-                VAL result = _rules.emplace(make_pair(
-                    product, pattern.getRule(product)));
+                VAL result =
+                    _rules.emplace(make_pair(
+                    product, pattern.getRule(
+                    product, [=](auto prodResult) {
+                        _products.emplace(make_pair(
+                            product, prodResult));
+                    })));
                 assert(result.second);
                 return result.first->second;
             }
@@ -38,11 +43,6 @@ const Rule& Registry::getRule(const string& product) {
 
 void Registry::createRule(const RuleDetails& details) {
     _patterns.emplace_back(*this, details);
-}
-
-
-map<string, any>&  Registry::getProducts() {
-    return _products;
 }
 
 

@@ -32,18 +32,7 @@ public:
 
     template<class T>
     T getProduct(const string& name) {
-        REF products = _registry.getProducts();
-        auto iter = products.find(name);
-        if (iter != products.end()) {
-            return any_cast<T>(iter->second);
-        }
-        else {
-            stringstream message;
-            message
-                << "No product in cache named \""
-                << name << "\".";
-            throw DepException(message.str());
-        }
+        return _registry.getProduct<T>(name);
     }
 };
 

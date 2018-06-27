@@ -9,8 +9,12 @@
 namespace depengine {
 
 
-Rule::Rule(Registry& registry, const RuleDetails& details):
-    _registry(registry), _details(details)  { }
+Rule::Rule(Registry& registry,
+        function<void(any)>& setter,
+        const RuleDetails& details):
+    _registry(registry),
+    _setter(setter),
+    _details(details)  { }
 
 
 void Rule::runDependencies() const {
@@ -31,9 +35,7 @@ void Rule::run() const {
     if (_details.mustExecute()) {
         VAL result = _details.execute();
         if (!result.empty()) {
-            _registry.getProducts()
-                     .emplace(make_pair(
-                        _details.getProduct(), result));
+            _setter(result);
         }
     }
 }

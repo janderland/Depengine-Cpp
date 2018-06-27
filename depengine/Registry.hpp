@@ -5,6 +5,7 @@
 #include <list>
 #include <map>
 
+#include "DepException.hpp"
 #include "RulePattern.hpp"
 #include "RuleDetails.hpp"
 #include "boost/any.hpp"
@@ -12,8 +13,8 @@
 
 
 namespace depengine {
+using namespace boost;
 using namespace std;
-using boost::any;
 class Rule;
 
 
@@ -26,7 +27,20 @@ private:
 public:
     const Rule& getRule(const string& product);
     void createRule(const RuleDetails& details);
-    map<string, any>& getProducts();
+
+    template<class T> T getProduct(const string& name) {
+        auto iter = _products.find(name);
+        if (iter != _products.end()) {
+            return any_cast<T>(iter->second);
+        }
+        else {
+            stringstream message;
+            message
+                << "No product in cache named \""
+                << name << "\".";
+            throw DepException(message.str());
+        }
+    }
 };
 
 
