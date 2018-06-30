@@ -21,7 +21,7 @@ public:
     ShellAction(const vector<string>& commands);
 
     any operator()(const string& product,
-            const vector<string>& dependencies) const;
+        const vector<string>& dependencies) const;
 };
 
 

@@ -22,10 +22,10 @@ using std::endl;
 
 
 string replaceCodes(
-        const string& command,
-        const string& product,
-        const vector<string>& dependencies) {
-
+    const string& command,
+    const string& product,
+    const vector<string>& dependencies)
+{
     auto replaceSymbol = [&](auto symbol, auto replace) {
         if (dependencies.size() > 0) {
             replace();
@@ -60,8 +60,9 @@ ShellAction::ShellAction(const vector<string>& commands):
 
 
 any ShellAction::operator()(
-            const string& product,
-            const vector<string>& dependencies) const {
+    const string& product,
+    const vector<string>& dependencies) const
+{
     cout << "Opening shell for commands..." << endl;
     FILE* pipe = popen("bash", "w");
 

@@ -67,7 +67,7 @@ int main() {
     Depengine boostrapper;
 
     // Build the script
-    boostrapper.createRule(
+    boostrapper.rule(
         scriptLib,
         { scriptFile, thisBinary.c_str() },
         ShellAction({
@@ -75,7 +75,7 @@ int main() {
         }));
 
     // Load the script
-    boostrapper.createRule(
+    boostrapper.rule(
         kLoadScript,
         { scriptLib },
         [&] (auto, auto) {
@@ -85,13 +85,13 @@ int main() {
                     kGetEngineFuncName);
         });
 
-    boostrapper.getRule(kLoadScript).run();
+    boostrapper.rule(kLoadScript).run();
 
 
     MUTABLE_VAL scriptEngine =
-        boostrapper.getProduct<
+        boostrapper.product<
             boost::shared_ptr<Depengine>
         >(kLoadScript);
 
-    scriptEngine->getRule("output").run();
+    scriptEngine->rule("output").run();
 }

@@ -22,48 +22,48 @@ depengine::Depengine engine;
 
 
 void rule(
-        std::string name,
-        std::vector<std::string> dependencies,
-        std::vector<std::string> commands) {
-    engine.createRule(
+    std::string name,
+    std::vector<std::string> dependencies,
+    std::vector<std::string> commands)
+{
+    engine.rule(
         name,
         dependencies,
-        ShellAction(commands)
-    );
+        ShellAction(commands));
 }
 
 
 void rule(
-        std::string name,
-        std::vector<std::string> commands) {
-    engine.createRule(
+    std::string name,
+    std::vector<std::string> commands)
+{
+    engine.rule(
         name,
         { },
-        ShellAction(commands)
-    );
+        ShellAction(commands));
 }
 
 
 void rule(
-        std::string name,
-        std::vector<std::string> dependencies,
-        depengine::Action action) {
-    engine.createRule(
+    std::string name,
+    std::vector<std::string> dependencies,
+    depengine::Action action)
+{
+    engine.rule(
         name,
         dependencies,
-        action
-    );
+        action);
 }
 
 
 void rule(
-        std::string name,
-        depengine::Action action) {
-    engine.createRule(
+    std::string name,
+    depengine::Action action)
+{
+    engine.rule(
         name,
         { },
-        action
-    );
+        action);
 }
 
 
