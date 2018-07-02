@@ -5,7 +5,8 @@ using namespace treet::tools;
 using namespace std;
 
 
-void build() {
+void build()
+{
     rule("output", { "source1", "source2" }, {
         "echo 'All dependencies: $D'",
         "echo 'First dependency: $d'",

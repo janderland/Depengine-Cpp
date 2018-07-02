@@ -4,22 +4,27 @@
 #include <string>
 
 
-namespace depengine {
-using namespace std;
+namespace depengine
+{
+    using namespace std;
 
 
-class DepException: public exception {
-private:
-    const string _message;
+    class DepException: public exception
+    {
+    private:
+        const string _message;
 
-public:
-    DepException(const string& message):
-        _message(message) { }
+    public:
+        DepException(const string& message):
+            _message(message)
+        {
+        }
 
-    virtual const char* what() const noexcept {
-        return _message.c_str();
-    }
-};
+        virtual const char* what() const noexcept
+        {
+            return _message.c_str();
+        }
+    };
 
 
 } // namespace depengine

@@ -6,37 +6,39 @@
 #include "Var.hpp"
 
 
-namespace depengine {
-using boost::any_cast;
-
-
-class Depengine
+namespace depengine
 {
-private:
-    Registry _registry;
+    using boost::any_cast;
 
-public:
-    void rule(
-        const string& product,
-        const vector<string>& dependencies,
-        const Action& action)
+
+    class Depengine
     {
-        _registry.createRule(
-            RuleDetails(
-                product,
-                dependencies,
-                action));
-    }
+    private:
+        Registry _registry;
 
-    Rule rule(const string name) {
-        return _registry.getRule(name);
-    }
+    public:
+        void rule(
+            const string& product,
+            const vector<string>& dependencies,
+            const Action& action
+        )
+        {
+            _registry.createRule(
+                RuleDetails(
+                    product, dependencies, action
+                ));
+        }
 
-    template<class T>
-    T product(const string& name) {
-        return _registry.getProduct<T>(name);
-    }
-};
+        Rule rule(const string name)
+        {
+            return _registry.getRule(name);
+        }
+
+        template<class T> T product(const string& name)
+        {
+            return _registry.getProduct<T>(name);
+        }
+    };
 
 
 } // namespace depengine

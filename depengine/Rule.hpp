@@ -3,25 +3,31 @@
 #include "RuleDetails.hpp"
 
 
-namespace depengine {
-using namespace std;
-class Registry;
+namespace depengine
+{
+    using namespace std;
+
+    class Registry;
 
 
-class Rule {
-private:
-    Registry& _registry;
-    function<void(any)> _setter;
-    const RuleDetails _details;
-    void runDependencies() const;
+    class Rule
+    {
+    private:
+        Registry& _registry;
+        function<void(any)> _setter;
+        const RuleDetails _details;
 
-public:
-    Rule(Registry& registry,
-        function<void(any)>& setter,
-        const RuleDetails& details);
+        void runDependencies() const;
 
-    void run() const;
-};
+    public:
+        Rule(
+            Registry& registry,
+            function<void(any)>& setter,
+            const RuleDetails& details
+        );
+
+        void run() const;
+    };
 
 
 } // namespace depengine
