@@ -46,10 +46,11 @@ Rule RulePattern::getRule(
     const function<void(any)>& setter
 ) const
 {
-    return Rule(
+    return Rule{
         getter, setter, RuleDetails(
             product, getDependencies(product), _action
-        ));
+        )
+    };
 }
 
 

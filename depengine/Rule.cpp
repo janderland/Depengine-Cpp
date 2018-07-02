@@ -9,18 +9,6 @@ namespace depengine
 {
 
 
-Rule::Rule(
-    const function<const Rule&(string)>& getter,
-    const function<void(any)>& setter,
-    const RuleDetails& details
-):
-    _getter(getter),
-    _setter(setter),
-    _details(details)
-{
-}
-
-
 void Rule::runDependencies() const
 {
     for (REF dependency : _details.getDependencies()) {
