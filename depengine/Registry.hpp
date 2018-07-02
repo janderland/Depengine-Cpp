@@ -14,37 +14,37 @@
 
 namespace depengine
 {
-    using namespace boost;
-    using namespace std;
+using namespace boost;
+using namespace std;
 
-    class Rule;
+class Rule;
 
 
-    class Registry
+class Registry
+{
+private:
+    map<string, Rule> _rules;
+    list<RulePattern> _patterns;
+    map<string, any> _products;
+
+public:
+    const Rule& getRule(const string& product);
+
+    void createRule(const RuleDetails& details);
+
+    template<class T> T getProduct(const string& name)
     {
-    private:
-        map<string, Rule> _rules;
-        list<RulePattern> _patterns;
-        map<string, any> _products;
-
-    public:
-        const Rule& getRule(const string& product);
-
-        void createRule(const RuleDetails& details);
-
-        template<class T> T getProduct(const string& name)
-        {
-            auto iter = _products.find(name);
-            if (iter != _products.end()) {
-                return any_cast<T>(iter->second);
-            }
-            else {
-                stringstream message;
-                message << "No product in cache named \"" << name << "\".";
-                throw DepException(message.str());
-            }
+        auto iter = _products.find(name);
+        if (iter != _products.end()) {
+            return any_cast<T>(iter->second);
         }
-    };
+        else {
+            stringstream message;
+            message << "No product in cache named \"" << name << "\".";
+            throw DepException(message.str());
+        }
+    }
+};
 
 
 } // namespace depengine

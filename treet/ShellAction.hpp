@@ -8,25 +8,24 @@
 
 namespace treet
 {
-    using depengine::Registry;
-    using std::vector;
-    using std::string;
-    using boost::any;
+using namespace depengine;
+using namespace boost;
+using namespace std;
 
 
-    class ShellAction
-    {
-    private:
-        const vector<string> _commands;
+class ShellAction
+{
+private:
+    const vector<string> _commands;
 
-    public:
-        ShellAction(const vector<string>& commands);
+public:
+    ShellAction(const vector<string>& commands);
 
-        any operator()(
-            const string& product,
-            const vector<string>& dependencies
-        ) const;
-    };
+    any operator()(
+        const string& product,
+        const vector<string>& dependencies
+    ) const;
+};
 
 
 } // namespace treet

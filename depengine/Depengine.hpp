@@ -8,37 +8,37 @@
 
 namespace depengine
 {
-    using boost::any_cast;
+using boost::any_cast;
 
 
-    class Depengine
+class Depengine
+{
+private:
+    Registry _registry;
+
+public:
+    void rule(
+        const string& product,
+        const vector<string>& dependencies,
+        const Action& action
+    )
     {
-    private:
-        Registry _registry;
+        _registry.createRule(
+            RuleDetails(
+                product, dependencies, action
+            ));
+    }
 
-    public:
-        void rule(
-            const string& product,
-            const vector<string>& dependencies,
-            const Action& action
-        )
-        {
-            _registry.createRule(
-                RuleDetails(
-                    product, dependencies, action
-                ));
-        }
+    Rule rule(const string name)
+    {
+        return _registry.getRule(name);
+    }
 
-        Rule rule(const string name)
-        {
-            return _registry.getRule(name);
-        }
-
-        template<class T> T product(const string& name)
-        {
-            return _registry.getProduct<T>(name);
-        }
-    };
+    template<class T> T product(const string& name)
+    {
+        return _registry.getProduct<T>(name);
+    }
+};
 
 
 } // namespace depengine

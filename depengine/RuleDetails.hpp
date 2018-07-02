@@ -10,8 +10,8 @@
 
 namespace depengine
 {
+    using namespace boost;
     using namespace std;
-    using boost::any;
 
 
     class RuleDetails

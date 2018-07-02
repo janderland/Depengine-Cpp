@@ -5,29 +5,30 @@
 
 namespace depengine
 {
-    using namespace std;
+using namespace boost;
+using namespace std;
 
-    class Registry;
+class Registry;
 
 
-    class Rule
-    {
-    private:
-        Registry& _registry;
-        function<void(any)> _setter;
-        const RuleDetails _details;
+class Rule
+{
+private:
+    Registry& _registry;
+    function<void(any)> _setter;
+    const RuleDetails _details;
 
-        void runDependencies() const;
+    void runDependencies() const;
 
-    public:
-        Rule(
-            Registry& registry,
-            function<void(any)>& setter,
-            const RuleDetails& details
-        );
+public:
+    Rule(
+        Registry& registry,
+        function<void(any)>& setter,
+        const RuleDetails& details
+    );
 
-        void run() const;
-    };
+    void run() const;
+};
 
 
 } // namespace depengine

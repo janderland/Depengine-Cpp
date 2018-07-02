@@ -5,16 +5,16 @@
 
 namespace depengine
 {
-    using namespace std;
+using namespace std;
 
 
-    struct FileInfo
-    {
-        const bool exists;
-        const time_t lastChange;
+struct FileInfo
+{
+    const bool exists;
+    const time_t lastChange;
 
-        static FileInfo get(const string& path);
-    };
+    static FileInfo get(const string& path);
+};
 
 
 } // namespace depengine

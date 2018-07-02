@@ -8,16 +8,16 @@
 
 namespace depengine
 {
-    using namespace std;
-    using boost::any;
+using namespace std;
+using boost::any;
 
 
-    using Action = function<
-        any(
-            const string& product,
-            const vector<string>& dependencies
-        )
-    >;
+using Action = function<
+    any(
+        const string& product,
+        const vector<string>& dependencies
+    )
+>;
 
 
 } // namespace depengine

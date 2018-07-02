@@ -11,36 +11,36 @@
 
 namespace depengine
 {
-    using namespace std;
+using namespace std;
 
-    class Registry;
+class Registry;
 
 
-    class RulePattern
-    {
-    private:
-        Registry& _registry;
-        const regex _prodPattern;
-        const vector<string> _depPatterns;
-        const Action _action;
+class RulePattern
+{
+private:
+    Registry& _registry;
+    const regex _prodPattern;
+    const vector<string> _depPatterns;
+    const Action _action;
 
-        vector<string> getDependencies(
-            const string& product
-        ) const;
+    vector<string> getDependencies(
+        const string& product
+    ) const;
 
-    public:
-        RulePattern(
-            Registry& registry,
-            const RuleDetails& details
-        );
+public:
+    RulePattern(
+        Registry& registry,
+        const RuleDetails& details
+    );
 
-        bool matches(const string& product) const;
+    bool matches(const string& product) const;
 
-        Rule getRule(
-            const string& product,
-            function<void(any)> setter
-        ) const;
-    };
+    Rule getRule(
+        const string& product,
+        function<void(any)> setter
+    ) const;
+};
 
 
 } // namespace depengine

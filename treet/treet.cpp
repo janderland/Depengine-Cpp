@@ -9,46 +9,46 @@
 
 namespace treet
 {
-    using boost::dll::program_location;
-    using boost::dll::import_alias;
-    using namespace depengine;
-    using namespace std;
+using boost::dll::program_location;
+using boost::dll::import_alias;
+using namespace depengine;
+using namespace std;
 
 
-    const string kGetEngineFuncName = "engine";
-    const string kSetupFuncName = "setup";
-    const string kFileName = "build";
-    const string kCpp = ".cpp";
-    const string kSo = ".so";
+const string kGetEngineFuncName = "engine";
+const string kSetupFuncName = "setup";
+const string kFileName = "build";
+const string kCpp = ".cpp";
+const string kSo = ".so";
 
-    const string kFlags = "-undefined dynamic_lookup "
-                          "-std=c++14 "
-                          "-fPIC "
-                          "-I. ";
-
-
-    string buildCommand(const string& fileName)
-    {
-        stringstream command;
-        command << "g++ " << kFlags << fileName << kCpp << " -o " << fileName
-                << kSo;
-        return command.str();
-    }
+const string kFlags = "-undefined dynamic_lookup "
+                      "-std=c++14 "
+                      "-fPIC "
+                      "-I. ";
 
 
-    auto loadScript(
-        const string& scriptLib,
-        const string& setupFuncName,
-        const string& scriptEngineName
-    )
-    {
-        cout << "Loading script library." << endl;
-        REF setupFunc = import_alias<void()>(scriptLib, setupFuncName);
-        cout << "Running script." << endl;
-        setupFunc();
+string buildCommand(const string& fileName)
+{
+    stringstream command;
+    command << "g++ " << kFlags << fileName << kCpp << " -o " << fileName
+            << kSo;
+    return command.str();
+}
 
-        return import_alias<Depengine>(scriptLib, scriptEngineName);
-    }
+
+auto loadScript(
+    const string& scriptLib,
+    const string& setupFuncName,
+    const string& scriptEngineName
+)
+{
+    cout << "Loading script library." << endl;
+    REF setupFunc = import_alias<void()>(scriptLib, setupFuncName);
+    cout << "Running script." << endl;
+    setupFunc();
+
+    return import_alias<Depengine>(scriptLib, scriptEngineName);
+}
 
 
 } // namespace treet

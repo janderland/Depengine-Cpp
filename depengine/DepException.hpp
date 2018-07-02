@@ -6,25 +6,25 @@
 
 namespace depengine
 {
-    using namespace std;
+using namespace std;
 
 
-    class DepException: public exception
+class DepException: public exception
+{
+private:
+    const string _message;
+
+public:
+    DepException(const string& message):
+        _message(message)
     {
-    private:
-        const string _message;
+    }
 
-    public:
-        DepException(const string& message):
-            _message(message)
-        {
-        }
-
-        virtual const char* what() const noexcept
-        {
-            return _message.c_str();
-        }
-    };
+    virtual const char* what() const noexcept
+    {
+        return _message.c_str();
+    }
+};
 
 
 } // namespace depengine
