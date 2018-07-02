@@ -12,9 +12,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ba78b2d-d900-4726-8621-c912bd8a17ea" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/depengine/Registry.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/Registry.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/depengine/Registry.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/Registry.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depengine/Rule.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/Rule.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depengine/Rule.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/Rule.hpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,17 +34,35 @@
       <file leaf-file-name="Registry.hpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/depengine/Registry.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+            <state relative-caret-position="433">
+              <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Registry.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Registry.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/depengine/Registry.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="57" selection-start-line="57" selection-end-line="57" />
+            <state relative-caret-position="352">
+              <caret line="32" selection-start-line="32" selection-end-line="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Rule.hpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/depengine/Rule.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Rule.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/depengine/Rule.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="1" selection-start-column="1" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -70,7 +89,6 @@
         <option value="$PROJECT_DIR$/depengine/Action.hpp" />
         <option value="$PROJECT_DIR$/build.cpp" />
         <option value="$PROJECT_DIR$/treet/treet.cpp" />
-        <option value="$PROJECT_DIR$/depengine/Rule.hpp" />
         <option value="$PROJECT_DIR$/depengine/RuleDetails.hpp" />
         <option value="$PROJECT_DIR$/treet/build.hpp" />
         <option value="$PROJECT_DIR$/treet/ShellAction.hpp" />
@@ -79,8 +97,10 @@
         <option value="$PROJECT_DIR$/depengine/RulePattern.hpp" />
         <option value="$PROJECT_DIR$/depengine/DepException.hpp" />
         <option value="$PROJECT_DIR$/depengine/Depengine.hpp" />
-        <option value="$PROJECT_DIR$/depengine/Registry.hpp" />
         <option value="$PROJECT_DIR$/depengine/Registry.cpp" />
+        <option value="$PROJECT_DIR$/depengine/Registry.hpp" />
+        <option value="$PROJECT_DIR$/depengine/Rule.cpp" />
+        <option value="$PROJECT_DIR$/depengine/Rule.hpp" />
       </list>
     </option>
   </component>
@@ -179,12 +199,12 @@
       <workItem from="1530496117216" duration="124000" />
       <workItem from="1530496292309" duration="3725000" />
       <workItem from="1530505676773" duration="91000" />
-      <workItem from="1530506562658" duration="639000" />
+      <workItem from="1530506562658" duration="1162000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24060000" />
+    <option name="totallyTimeSpent" value="24583000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -199,7 +219,7 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49601594" visible="true" weight="0.24609375" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49601594" visible="true" weight="0.24609375" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.328877" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.31016043" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.328877" />
@@ -401,24 +421,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/depengine/Rule.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/depengine/Action.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/depengine/Rule.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="48" column="5" lean-forward="true" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -501,15 +507,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/depengine/Registry.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+        <state relative-caret-position="433">
+          <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/depengine/Registry.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
+        <state relative-caret-position="352">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/depengine/Rule.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/depengine/Rule.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" selection-start-column="1" selection-end-column="1" />
         </state>
       </provider>
     </entry>

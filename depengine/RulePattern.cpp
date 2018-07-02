@@ -23,10 +23,8 @@ vector<string> RulePattern::getDependencies(
 
 
 RulePattern::RulePattern(
-    Registry& registry,
     const RuleDetails& details
 ):
-    _registry(registry),
     _prodPattern(details.getProduct()),
     _depPatterns(details.getDependencies()),
     _action(details.getAction())
@@ -44,11 +42,12 @@ bool RulePattern::matches(
 
 Rule RulePattern::getRule(
     const string& product,
-    function<void(any)> setter
+    const function<const Rule&(string)>& getter,
+    const function<void(any)>& setter
 ) const
 {
     return Rule(
-        _registry, setter, RuleDetails(
+        getter, setter, RuleDetails(
             product, getDependencies(product), _action
         ));
 }

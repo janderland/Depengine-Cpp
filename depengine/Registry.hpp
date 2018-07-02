@@ -27,17 +27,19 @@ private:
     list<RulePattern> _patterns;
     map<string, any> _products;
 
-    class Setter
+    struct Setter
     {
-    private:
-        bool _set = false;
         map<string, any>& _products;
         const string _productName;
 
-    public:
-        Setter(map<string, any>& products, const string& productName);
+        void operator()(any product) const;
+    };
 
-        void operator()(any product);
+    struct Getter
+    {
+        Registry& _registry;
+
+        const Rule& operator()(string productName) const;
     };
 
 public:

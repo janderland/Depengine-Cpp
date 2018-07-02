@@ -13,13 +13,10 @@ namespace depengine
 {
 using namespace std;
 
-class Registry;
-
 
 class RulePattern
 {
 private:
-    Registry& _registry;
     const regex _prodPattern;
     const vector<string> _depPatterns;
     const Action _action;
@@ -30,7 +27,6 @@ private:
 
 public:
     RulePattern(
-        Registry& registry,
         const RuleDetails& details
     );
 
@@ -38,7 +34,8 @@ public:
 
     Rule getRule(
         const string& product,
-        function<void(any)> setter
+        const function<const Rule&(string)>& getter,
+        const function<void(any)>& setter
     ) const;
 };
 

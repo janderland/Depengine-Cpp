@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "DepException.hpp"
-#include "Registry.hpp"
+#include "Rule.hpp"
 #include "Var.hpp"
 
 
@@ -10,11 +10,11 @@ namespace depengine
 
 
 Rule::Rule(
-    Registry& registry,
-    function<void(any)>& setter,
+    const function<const Rule&(string)>& getter,
+    const function<void(any)>& setter,
     const RuleDetails& details
 ):
-    _registry(registry),
+    _getter(getter),
     _setter(setter),
     _details(details)
 {
@@ -26,7 +26,7 @@ void Rule::runDependencies() const
     for (REF dependency : _details.getDependencies()) {
         const Rule* rule = nullptr;
         try {
-            rule = &_registry.getRule(dependency);
+            rule = &_getter(dependency);
         }
         catch (const DepException& err) {
             cout << err.what() << endl;

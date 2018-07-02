@@ -8,13 +8,11 @@ namespace depengine
 using namespace boost;
 using namespace std;
 
-class Registry;
-
 
 class Rule
 {
 private:
-    Registry& _registry;
+    function<const Rule&(string)> _getter;
     function<void(any)> _setter;
     const RuleDetails _details;
 
@@ -22,8 +20,8 @@ private:
 
 public:
     Rule(
-        Registry& registry,
-        function<void(any)>& setter,
+        const function<const Rule&(string)>& getter,
+        const function<void(any)>& setter,
         const RuleDetails& details
     );
 

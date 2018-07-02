@@ -15,21 +15,15 @@ namespace depengine
 {
 
 
-Registry::Setter::Setter(
-    map<string, any>& products,
-    const string& productName
-):
-    _products(products),
-    _productName(productName)
+void Registry::Setter::operator()(any product) const
 {
+    _products[_productName] = product;
 }
 
 
-void Registry::Setter::operator()(any product)
+const Rule& Registry::Getter::operator()(string productName) const
 {
-    assert(!_set);
-    _products[_productName] = product;
-    _set = true;
+    return _registry.getRule(productName);
 }
 
 
@@ -45,7 +39,9 @@ const Rule& Registry::getRule(const string& product)
                 VAL result = _rules.emplace(
                     make_pair(
                         product, pattern.getRule(
-                            product, Setter(_products, product)
+                            product,
+                            Getter{*this},
+                            Setter{_products, product}
                         )));
                 assert(result.second);
                 return result.first->second;
@@ -60,7 +56,7 @@ const Rule& Registry::getRule(const string& product)
 
 void Registry::createRule(const RuleDetails& details)
 {
-    _patterns.emplace_back(*this, details);
+    _patterns.emplace_back(details);
 }
 
 
