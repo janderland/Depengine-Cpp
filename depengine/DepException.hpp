@@ -9,7 +9,7 @@ namespace depengine
 using namespace std;
 
 
-class DepException: public exception
+class DepException: public std::exception
 {
 private:
     const string _message;
