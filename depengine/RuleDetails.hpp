@@ -16,17 +16,10 @@ namespace depengine
 
     class RuleDetails
     {
-    private:
+    public:
         const string _product;
         const vector<string> _dependencies;
         const Action _action;
-
-    public:
-        RuleDetails(
-            const string& product,
-            const vector<string>& dependencies,
-            const Action& action
-        );
 
         const string& getProduct() const;
 

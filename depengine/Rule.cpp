@@ -11,7 +11,7 @@ namespace depengine
 
 void Rule::runDependencies() const
 {
-    for (REF dependency : _details.getDependencies()) {
+    for (REF dependency : _details._dependencies) {
         const Rule* rule = nullptr;
         try {
             rule = &_getter(dependency);

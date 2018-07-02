@@ -25,9 +25,9 @@ vector<string> RulePattern::dependencies(
 RulePattern::RulePattern(
     const RuleDetails& details
 ):
-    _prodPattern(details.getProduct()),
-    _depPatterns(details.getDependencies()),
-    _action(details.getAction())
+    _prodPattern(details._product),
+    _depPatterns(details._dependencies),
+    _action(details._action)
 {
 }
 
@@ -47,9 +47,9 @@ Rule RulePattern::rule(
 ) const
 {
     return Rule{
-        getter, setter, RuleDetails(
+        getter, setter, RuleDetails {
             product, dependencies(product), _action
-        )
+        }
     };
 }
 

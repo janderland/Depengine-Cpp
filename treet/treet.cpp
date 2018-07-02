@@ -9,8 +9,7 @@
 
 namespace treet
 {
-using boost::dll::program_location;
-using boost::dll::import_alias;
+using namespace boost::dll;
 using namespace depengine;
 using namespace std;
 

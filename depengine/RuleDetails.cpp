@@ -11,36 +11,6 @@ namespace depengine
 {
 
 
-RuleDetails::RuleDetails(
-    const string& product,
-    const vector<string>& dependencies,
-    const Action& action
-):
-    _product(product),
-    _dependencies(dependencies),
-    _action(action)
-{
-}
-
-
-const string& RuleDetails::getProduct() const
-{
-    return _product;
-}
-
-
-const vector<string>& RuleDetails::getDependencies() const
-{
-    return _dependencies;
-}
-
-
-const Action& RuleDetails::getAction() const
-{
-    return _action;
-}
-
-
 bool RuleDetails::mustExecute() const
 {
     cout << "Checking state of \"" << _product << "\"..." << endl;

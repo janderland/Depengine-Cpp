@@ -24,9 +24,9 @@ public:
     )
     {
         _registry.rule(
-            RuleDetails(
+            RuleDetails {
                 product, dependencies, action
-            ));
+            });
     }
 
     Rule rule(const string name)
