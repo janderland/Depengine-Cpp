@@ -6,7 +6,7 @@ namespace depengine
 {
 
 
-vector<string> RulePattern::getDependencies(
+vector<string> RulePattern::dependencies(
     const string& product
 ) const
 {
@@ -40,7 +40,7 @@ bool RulePattern::matches(
 }
 
 
-Rule RulePattern::getRule(
+Rule RulePattern::rule(
     const string& product,
     const function<const Rule&(string)>& getter,
     const function<void(any)>& setter
@@ -48,7 +48,7 @@ Rule RulePattern::getRule(
 {
     return Rule{
         getter, setter, RuleDetails(
-            product, getDependencies(product), _action
+            product, dependencies(product), _action
         )
     };
 }

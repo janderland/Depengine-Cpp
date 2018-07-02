@@ -38,10 +38,9 @@ const Rule& Registry::rule(const string& product)
             if (pattern.matches(product)) {
                 VAL result = _rules.emplace(
                     make_pair(
-                        product, pattern.getRule(
-                            product,
-                            RuleRetriever{*this},
-                            ProductPublisher{_products, product}
+                        product, pattern.rule(
+                            product, RuleRetriever {*this},
+                            ProductPublisher {_products, product}
                         )));
                 assert(result.second);
                 return result.first->second;
