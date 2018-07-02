@@ -12,26 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ba78b2d-d900-4726-8621-c912bd8a17ea" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depengine/Action.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/Action.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depengine/DepException.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/DepException.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depengine/Depengine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/Depengine.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depengine/FileInfo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/FileInfo.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depengine/FileInfo.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/FileInfo.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/depengine/Registry.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/Registry.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/depengine/Registry.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/Registry.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depengine/Rule.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/Rule.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depengine/Rule.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/Rule.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depengine/RuleDetails.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/RuleDetails.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depengine/RuleDetails.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/RuleDetails.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depengine/RulePattern.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/RulePattern.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depengine/RulePattern.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/depengine/RulePattern.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treet/ShellAction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/treet/ShellAction.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treet/ShellAction.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/treet/ShellAction.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treet/build.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/treet/build.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treet/treet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/treet/treet.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,84 +29,21 @@
     <favorites_list name="treet" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="Registry.hpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/depengine/Registry.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="117">
+              <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RuleDetails.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/depengine/RuleDetails.cpp">
+      <file leaf-file-name="Registry.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/depengine/Registry.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RulePattern.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/depengine/RulePattern.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RulePattern.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/depengine/RulePattern.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Var.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/depengine/Var.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/treet/build.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16">
-              <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ShellAction.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/treet/ShellAction.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ShellAction.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/treet/ShellAction.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="treet.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/treet/treet.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="58" column="25" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
+            <state relative-caret-position="444">
+              <caret line="57" selection-start-line="57" selection-end-line="57" />
             </state>
           </provider>
         </entry>
@@ -148,19 +68,19 @@
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/treet/ShellAction.cpp" />
         <option value="$PROJECT_DIR$/depengine/Action.hpp" />
-        <option value="$PROJECT_DIR$/depengine/Registry.cpp" />
         <option value="$PROJECT_DIR$/build.cpp" />
         <option value="$PROJECT_DIR$/treet/treet.cpp" />
         <option value="$PROJECT_DIR$/depengine/Rule.hpp" />
         <option value="$PROJECT_DIR$/depengine/RuleDetails.hpp" />
         <option value="$PROJECT_DIR$/treet/build.hpp" />
         <option value="$PROJECT_DIR$/treet/ShellAction.hpp" />
-        <option value="$PROJECT_DIR$/depengine/Depengine.hpp" />
-        <option value="$PROJECT_DIR$/depengine/DepException.hpp" />
-        <option value="$PROJECT_DIR$/depengine/Registry.hpp" />
         <option value="$PROJECT_DIR$/depengine/RuleDetails.cpp" />
         <option value="$PROJECT_DIR$/depengine/RulePattern.cpp" />
         <option value="$PROJECT_DIR$/depengine/RulePattern.hpp" />
+        <option value="$PROJECT_DIR$/depengine/DepException.hpp" />
+        <option value="$PROJECT_DIR$/depengine/Depengine.hpp" />
+        <option value="$PROJECT_DIR$/depengine/Registry.hpp" />
+        <option value="$PROJECT_DIR$/depengine/Registry.cpp" />
       </list>
     </option>
   </component>
@@ -187,6 +107,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1280" />
     <option name="height" value="800" />
@@ -209,11 +130,6 @@
               <item name="treet" type="462c0819:PsiDirectoryNode" />
               <item name="depengine" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="treet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="treet" type="462c0819:PsiDirectoryNode" />
-              <item name="treet" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -226,7 +142,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -261,12 +177,14 @@
       <workItem from="1530400976491" duration="8888000" />
       <workItem from="1530495551415" duration="471000" />
       <workItem from="1530496117216" duration="124000" />
-      <workItem from="1530496292309" duration="1163000" />
+      <workItem from="1530496292309" duration="3725000" />
+      <workItem from="1530505676773" duration="91000" />
+      <workItem from="1530506562658" duration="639000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20768000" />
+    <option name="totallyTimeSpent" value="24060000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -279,24 +197,25 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49601594" visible="true" weight="0.24609375" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.328877" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.31016043" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.328877" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.328877" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.328877" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.328877" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.328877" />
       <window_info anchor="right" id="Structure" order="3" sideWeight="0.50398403" side_tool="true" visible="true" weight="0.24609375" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.328877" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.54278076" />
       <window_info id="Favorites" order="1" sideWeight="0.50398403" side_tool="true" weight="0.24609375" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39973262" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Inspection Results" order="8" weight="0.328877" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.31016043" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
     </layout>
@@ -313,6 +232,34 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/depengine/Registry.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/depengine/Registry.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/depengine/Registry.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/depengine/Registry.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/treet/treet.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="896">
@@ -432,13 +379,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/depengine/Registry.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/dictionaries/chronzerg.xml" />
     <entry file="file://$PROJECT_DIR$/depengine/FileInfo.cpp">
       <provider selected="true" editor-type-id="text-editor">
@@ -475,31 +415,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/depengine/Depengine.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/depengine/DepException.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/depengine/Rule.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
           <caret line="48" column="5" lean-forward="true" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/depengine/Registry.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
@@ -517,10 +436,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/build.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/depengine/RulePattern.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="80">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
@@ -552,20 +478,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.cpp">
+    <entry file="file://$PROJECT_DIR$/treet/treet.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="183">
+          <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/treet/treet.cpp">
+    <entry file="file://$PROJECT_DIR$/depengine/DepException.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="58" column="25" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
+        <state relative-caret-position="160">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/depengine/Depengine.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/depengine/Registry.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/depengine/Registry.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
         </state>
       </provider>
     </entry>

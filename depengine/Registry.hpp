@@ -27,6 +27,19 @@ private:
     list<RulePattern> _patterns;
     map<string, any> _products;
 
+    class Setter
+    {
+    private:
+        bool _set = false;
+        map<string, any>& _products;
+        const string _productName;
+
+    public:
+        Setter(map<string, any>& products, const string& productName);
+
+        void operator()(any product);
+    };
+
 public:
     const Rule& getRule(const string& product);
 
