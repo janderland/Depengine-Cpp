@@ -17,8 +17,6 @@ namespace depengine
 using namespace boost;
 using namespace std;
 
-class Rule;
-
 
 class Registry
 {
@@ -27,7 +25,7 @@ private:
     list<RulePattern> _patterns;
     map<string, any> _products;
 
-    struct Setter
+    struct ProductPublisher
     {
         map<string, any>& _products;
         const string _productName;
@@ -35,7 +33,7 @@ private:
         void operator()(any product) const;
     };
 
-    struct Getter
+    struct RuleRetriever
     {
         Registry& _registry;
 
@@ -43,11 +41,11 @@ private:
     };
 
 public:
-    const Rule& getRule(const string& product);
+    const Rule& rule(const string& product);
 
-    void createRule(const RuleDetails& details);
+    void rule(const RuleDetails& details);
 
-    template<class T> T getProduct(const string& name)
+    template<class T> T product(const string& name)
     {
         auto iter = _products.find(name);
         if (iter != _products.end()) {

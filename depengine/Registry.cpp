@@ -15,19 +15,19 @@ namespace depengine
 {
 
 
-void Registry::Setter::operator()(any product) const
+void Registry::ProductPublisher::operator()(any product) const
 {
     _products[_productName] = product;
 }
 
 
-const Rule& Registry::Getter::operator()(string productName) const
+const Rule& Registry::RuleRetriever::operator()(string productName) const
 {
-    return _registry.getRule(productName);
+    return _registry.rule(productName);
 }
 
 
-const Rule& Registry::getRule(const string& product)
+const Rule& Registry::rule(const string& product)
 {
     REF location = _rules.find(product);
     if (location != _rules.end()) {
@@ -40,8 +40,8 @@ const Rule& Registry::getRule(const string& product)
                     make_pair(
                         product, pattern.getRule(
                             product,
-                            Getter{*this},
-                            Setter{_products, product}
+                            RuleRetriever{*this},
+                            ProductPublisher{_products, product}
                         )));
                 assert(result.second);
                 return result.first->second;
@@ -54,7 +54,7 @@ const Rule& Registry::getRule(const string& product)
 }
 
 
-void Registry::createRule(const RuleDetails& details)
+void Registry::rule(const RuleDetails& details)
 {
     _patterns.emplace_back(details);
 }

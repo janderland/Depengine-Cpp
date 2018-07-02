@@ -23,7 +23,7 @@ public:
         const Action& action
     )
     {
-        _registry.createRule(
+        _registry.rule(
             RuleDetails(
                 product, dependencies, action
             ));
@@ -31,12 +31,12 @@ public:
 
     Rule rule(const string name)
     {
-        return _registry.getRule(name);
+        return _registry.rule(name);
     }
 
     template<class T> T product(const string& name)
     {
-        return _registry.getProduct<T>(name);
+        return _registry.product<T>(name);
     }
 };
 
