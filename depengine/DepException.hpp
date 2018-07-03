@@ -15,12 +15,12 @@ private:
     const string _message;
 
 public:
-    DepException(const string& message):
-        _message(message)
+    DepException(string message):
+        _message(std::move(message))
     {
     }
 
-    virtual const char* what() const noexcept
+    const char* what() const noexcept override
     {
         return _message.c_str();
     }

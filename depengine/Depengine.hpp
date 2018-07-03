@@ -25,7 +25,7 @@ public:
         _registry.rule({product, dependencies, action});
     }
 
-    Rule rule(const string name)
+    Rule rule(const string& name)
     {
         return _registry.rule(name);
     }

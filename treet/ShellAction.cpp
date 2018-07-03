@@ -26,7 +26,7 @@ string replaceCodes(
         auto symbol,
         auto replace
     ) {
-        if (dependencies.size() > 0) {
+        if (!dependencies.empty()) {
             replace();
         }
         else {

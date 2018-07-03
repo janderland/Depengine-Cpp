@@ -13,7 +13,9 @@ void Rule::runDependencies() const
     for (const auto& dependency : _details._dependencies) {
         const Rule* rule = nullptr;
         try {
-            rule = &_getter(dependency);
+            // TODO: Improve this control flow.
+            const Rule& ruleRef = _getter(dependency);
+            rule = &ruleRef;
         }
         catch (const DepException& err) {
             cout << err.what() << endl;

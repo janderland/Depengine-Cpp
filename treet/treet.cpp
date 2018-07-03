@@ -14,13 +14,13 @@ using namespace depengine;
 using namespace std;
 
 
-const string kGetEngineFuncName = "engine";
-const string kSetupFuncName = "setup";
-const string kFileName = "build";
-const string kCpp = ".cpp";
-const string kSo = ".so";
+const char* kGetEngineFuncName = "engine";
+const char* kSetupFuncName = "setup";
+const char* kFileName = "build";
+const char* kCpp = ".cpp";
+const char* kSo = ".so";
 
-const string kFlags = "-undefined dynamic_lookup "
+const char* kFlags = "-undefined dynamic_lookup "
                       "-std=c++14 "
                       "-fPIC "
                       "-I. ";
@@ -58,19 +58,19 @@ int main()
     using namespace treet;
     const auto kLoadScript = "loadScript";
     const auto thisBinary = program_location();
-    const auto scriptFile = kFileName + kCpp;
-    const auto scriptLib = kFileName + kSo;
+    const auto scriptFile = string(kFileName) + kCpp;
+    const auto scriptLib = string(kFileName) + kSo;
 
-    Depengine boostrapper;
+    Depengine bootstrapper;
 
     // Build the script
-    boostrapper.rule(
+    bootstrapper.rule(
         scriptLib, {scriptFile, thisBinary.c_str()},
         ShellAction({buildCommand(kFileName)}));
 
 
     // Load the script
-    boostrapper.rule(
+    bootstrapper.rule(
         kLoadScript, {scriptLib}, [&](
             auto,
             auto
@@ -79,10 +79,10 @@ int main()
         }
     );
 
-    boostrapper.rule(kLoadScript).run();
+    bootstrapper.rule(kLoadScript).run();
 
 
-    auto scriptEngine = boostrapper.product<
+    auto scriptEngine = bootstrapper.product<
         boost::shared_ptr<Depengine>
     >(kLoadScript);
 

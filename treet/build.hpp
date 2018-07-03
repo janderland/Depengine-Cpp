@@ -24,46 +24,40 @@ depengine::Depengine engine;
 
 
 void rule(
-    std::string name,
-    std::vector<std::string> dependencies,
-    std::vector<std::string> commands
+    const std::string& name,
+    const std::vector<std::string>& dependencies,
+    const std::vector<std::string>& commands
 )
 {
-    engine.rule(
-        name, dependencies, ShellAction(commands));
+    engine.rule(name, dependencies, ShellAction(commands));
 }
 
 
 void rule(
-    std::string name,
-    std::vector<std::string> commands
+    const std::string& name,
+    const std::vector<std::string>& commands
 )
 {
-    engine.rule(
-        name, { }, ShellAction(commands));
+    engine.rule(name, { }, ShellAction(commands));
 }
 
 
 void rule(
-    std::string name,
-    std::vector<std::string> dependencies,
-    depengine::Action action
+    const std::string& name,
+    const std::vector<std::string>& dependencies,
+    const depengine::Action& action
 )
 {
-    engine.rule(
-        name, dependencies, action
-    );
+    engine.rule(name, dependencies, action);
 }
 
 
 void rule(
-    std::string name,
-    depengine::Action action
+    const std::string& name,
+    const depengine::Action& action
 )
 {
-    engine.rule(
-        name, { }, action
-    );
+    engine.rule(name, { }, action);
 }
 
 
