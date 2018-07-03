@@ -25,6 +25,6 @@ add_executable(treet
         treet/build.hpp
         treet/ShellAction.cpp
         treet/ShellAction.hpp
-        treet/treet.cpp)
+        treet/treet.cpp treet/ActionAdapter.hpp)
 
 target_link_libraries(treet ${Boost_LIBRARIES})

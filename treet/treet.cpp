@@ -4,6 +4,7 @@
 #include <sstream>
 
 #include "depengine/Depengine.hpp"
+#include "ActionAdapter.hpp"
 #include "ShellAction.hpp"
 
 
@@ -21,9 +22,9 @@ const char* kCpp = ".cpp";
 const char* kSo = ".so";
 
 const char* kFlags = "-undefined dynamic_lookup "
-                      "-std=c++14 "
-                      "-fPIC "
-                      "-I. ";
+                     "-std=c++14 "
+                     "-fPIC "
+                     "-I. ";
 
 
 string buildCommand(const string& fileName)
@@ -42,7 +43,7 @@ auto loadScript(
 )
 {
     cout << "Loading script library." << endl;
-    const auto& setupFunc = import_alias<void()>(scriptLib, setupFuncName);
+    const auto setupFunc = import_alias<void()>(scriptLib, setupFuncName);
     cout << "Running script." << endl;
     setupFunc();
 
@@ -68,16 +69,10 @@ int main()
         scriptLib, {scriptFile, thisBinary.c_str()},
         ShellAction({buildCommand(kFileName)}));
 
-
-    // Load the script
     bootstrapper.rule(
-        kLoadScript, {scriptLib}, [&](
-            auto,
-            auto
-        ) {
-            return loadScript(scriptLib, kSetupFuncName, kGetEngineFuncName);
-        }
-    );
+        kLoadScript, {scriptLib}, ActionAdapter(
+            loadScript, scriptLib, kSetupFuncName, kGetEngineFuncName
+        ));
 
     bootstrapper.rule(kLoadScript).run();
 
