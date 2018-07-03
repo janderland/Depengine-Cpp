@@ -22,7 +22,6 @@ add_executable(treet
         depengine/RuleDetails.hpp
         depengine/RulePattern.cpp
         depengine/RulePattern.hpp
-        depengine/Var.hpp
         treet/build.hpp
         treet/ShellAction.cpp
         treet/ShellAction.hpp

@@ -4,7 +4,6 @@
 #include "RuleDetails.hpp"
 #include "Registry.hpp"
 #include "FileInfo.hpp"
-#include "Var.hpp"
 
 
 namespace depengine
@@ -15,11 +14,11 @@ bool RuleDetails::mustExecute() const
 {
     cout << "Checking state of \"" << _product << "\"..." << endl;
 
-    VAL prodFile = FileInfo::get(_product);
+    const auto prodFile = FileInfo::get(_product);
     if (prodFile.exists) {
         cout << "\"" << _product << "\" exists on disk." << endl;
-        for (REF dependency : _dependencies) {
-            VAL depFile = FileInfo::get(dependency);
+        for (const auto& dependency : _dependencies) {
+            const auto depFile = FileInfo::get(dependency);
             if (depFile.exists) {
                 if (depFile.lastChange > prodFile.lastChange) {
                     cout << "Dependency \"" << dependency

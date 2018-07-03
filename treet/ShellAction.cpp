@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "depengine/DepException.hpp"
-#include "depengine/Var.hpp"
 #include "ShellAction.hpp"
 
 
@@ -75,8 +74,8 @@ any ShellAction::operator()(
     FILE* pipe = popen("bash", "w");
 
     if (pipe) {
-        for (REF cmdPattern : _commands) {
-            VAL command = replaceCodes(cmdPattern, product, dependencies);
+        for (const auto& cmdPattern : _commands) {
+            const auto command = replaceCodes(cmdPattern, product, dependencies);
             fprintf(pipe, "echo \"\\\"%s\\\"\"\n", string(command).c_str());
             fprintf(pipe, "%s\n", command.c_str());
         }

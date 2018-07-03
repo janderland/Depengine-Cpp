@@ -1,5 +1,4 @@
 #include "RulePattern.hpp"
-#include "Var.hpp"
 
 
 namespace depengine
@@ -11,7 +10,7 @@ vector<string> RulePattern::dependencies(
 ) const
 {
     vector<string> filled;
-    for (REF depPattern : _depPatterns) {
+    for (const auto& depPattern : _depPatterns) {
         filled.emplace_back(
             regex_replace(
                 product, _prodPattern, depPattern,

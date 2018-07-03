@@ -8,7 +8,6 @@
 #include "RulePattern.hpp"
 #include "Registry.hpp"
 #include "Rule.hpp"
-#include "Var.hpp"
 
 
 namespace depengine
@@ -29,14 +28,14 @@ const Rule& Registry::RuleRetriever::operator()(string productName) const
 
 const Rule& Registry::rule(const string& product)
 {
-    REF location = _rules.find(product);
+    const auto& location = _rules.find(product);
     if (location != _rules.end()) {
         return location->second;
     }
     else {
-        for (REF pattern : _patterns) {
+        for (const auto& pattern : _patterns) {
             if (pattern.matches(product)) {
-                VAL result = _rules.emplace(
+                const auto result = _rules.emplace(
                     make_pair(
                         product, pattern.rule(
                             product, RuleRetriever {*this},

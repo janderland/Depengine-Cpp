@@ -42,7 +42,7 @@ auto loadScript(
 )
 {
     cout << "Loading script library." << endl;
-    REF setupFunc = import_alias<void()>(scriptLib, setupFuncName);
+    const auto& setupFunc = import_alias<void()>(scriptLib, setupFuncName);
     cout << "Running script." << endl;
     setupFunc();
 
@@ -56,10 +56,10 @@ auto loadScript(
 int main()
 {
     using namespace treet;
-    VAL kLoadScript = "loadScript";
-    VAL thisBinary = program_location();
-    VAL scriptFile = kFileName + kCpp;
-    VAL scriptLib = kFileName + kSo;
+    const auto kLoadScript = "loadScript";
+    const auto thisBinary = program_location();
+    const auto scriptFile = kFileName + kCpp;
+    const auto scriptLib = kFileName + kSo;
 
     Depengine boostrapper;
 
@@ -82,7 +82,7 @@ int main()
     boostrapper.rule(kLoadScript).run();
 
 
-    MUTABLE_VAL scriptEngine = boostrapper.product<
+    auto scriptEngine = boostrapper.product<
         boost::shared_ptr<Depengine>
     >(kLoadScript);
 

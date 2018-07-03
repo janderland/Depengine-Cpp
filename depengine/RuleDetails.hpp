@@ -21,12 +21,6 @@ namespace depengine
         const vector<string> _dependencies;
         const Action _action;
 
-        const string& getProduct() const;
-
-        const vector<string>& getDependencies() const;
-
-        const Action& getAction() const;
-
         bool mustExecute() const;
 
         any execute() const;

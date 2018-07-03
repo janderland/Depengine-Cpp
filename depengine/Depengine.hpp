@@ -3,7 +3,6 @@
 #include "DepException.hpp"
 #include "RuleDetails.hpp"
 #include "Registry.hpp"
-#include "Var.hpp"
 
 
 namespace depengine
