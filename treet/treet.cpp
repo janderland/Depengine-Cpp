@@ -15,8 +15,8 @@ using namespace depengine;
 using namespace std;
 
 
-const char* kGetEngineFuncName = "engine";
-const char* kSetupFuncName = "setup";
+const char* kSetupFuncAlias = "setup";
+const char* kEngineAlias = "engine";
 const char* kFileName = "build";
 const char* kCpp = ".cpp";
 const char* kSo = ".so";
@@ -36,18 +36,18 @@ string buildCommand(const string& fileName)
 }
 
 
-auto loadScript(
+auto scriptEngine(
     const string& scriptLib,
-    const string& setupFuncName,
-    const string& scriptEngineName
+    const string& setupFuncAlias,
+    const string& scriptAlias
 )
 {
     cout << "Loading script library." << endl;
-    const auto setupFunc = import_alias<void()>(scriptLib, setupFuncName);
+    const auto setupFunc = import_alias<void()>(scriptLib, setupFuncAlias);
     cout << "Running script." << endl;
     setupFunc();
 
-    return import_alias<Depengine>(scriptLib, scriptEngineName);
+    return import_alias<Depengine>(scriptLib, scriptAlias);
 }
 
 
@@ -57,7 +57,7 @@ auto loadScript(
 int main()
 {
     using namespace treet;
-    const auto kLoadScript = "loadScript";
+    const auto kScriptEngine = "scriptEngine";
     const auto thisBinary = program_location();
     const auto scriptFile = string(kFileName) + kCpp;
     const auto scriptLib = string(kFileName) + kSo;
@@ -69,17 +69,18 @@ int main()
         scriptLib, {scriptFile, thisBinary.c_str()},
         ShellAction({buildCommand(kFileName)}));
 
+    // Load the script
     bootstrapper.rule(
-        kLoadScript, {scriptLib}, ActionAdapter(
-            loadScript, scriptLib, kSetupFuncName, kGetEngineFuncName
+        kScriptEngine, {scriptLib}, ActionAdapter(
+            scriptEngine, scriptLib, kSetupFuncAlias, kEngineAlias
         ));
 
-    bootstrapper.rule(kLoadScript).run();
+    bootstrapper.rule(kScriptEngine).run();
 
 
-    auto scriptEngine = bootstrapper.product<
+    auto engine = bootstrapper.product<
         boost::shared_ptr<Depengine>
-    >(kLoadScript);
+    >(kScriptEngine);
 
-    scriptEngine->rule("output").run();
+    engine->rule("output").run();
 }
