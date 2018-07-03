@@ -23,10 +23,7 @@ public:
         const Action& action
     )
     {
-        _registry.rule(
-            RuleDetails {
-                product, dependencies, action
-            });
+        _registry.rule({product, dependencies, action});
     }
 
     Rule rule(const string name)

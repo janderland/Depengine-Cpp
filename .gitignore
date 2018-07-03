@@ -1,5 +1,5 @@
 cmake-*
-build.so
+*.so*
 source1
 source2
 output

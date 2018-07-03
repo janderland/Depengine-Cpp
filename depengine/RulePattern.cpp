@@ -46,8 +46,8 @@ Rule RulePattern::rule(
     const function<void(any)>& setter
 ) const
 {
-    return Rule{
-        getter, setter, RuleDetails {
+    return {
+        getter, setter, {
             product, dependencies(product), _action
         }
     };
