@@ -62,6 +62,7 @@ int main()
     const auto scriptFile = string(kFileName) + kCpp;
     const auto scriptLib = string(kFileName) + kSo;
 
+
     Depengine bootstrapper;
 
     // Build the script

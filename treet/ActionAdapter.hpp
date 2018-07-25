@@ -19,9 +19,9 @@ using namespace boost;
 using namespace std;
 
 
-template<class F, class... Args>
+template<class Func, class... Args>
 Action ActionAdapter(
-    F adaptee,
+    Func adaptee,
     Args... args
 )
 {

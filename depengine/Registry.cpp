@@ -26,27 +26,27 @@ const Rule& Registry::RuleRetriever::operator()(string productName) const
 }
 
 
-const Rule& Registry::rule(const string& product)
+const Rule& Registry::rule(const string& productName)
 {
-    const auto& location = _rules.find(product);
+    const auto& location = _rules.find(productName);
     if (location != _rules.end()) {
         return location->second;
     }
     else {
         for (const auto& pattern : _patterns) {
-            if (pattern.matches(product)) {
+            if (pattern.matches(productName)) {
                 const auto result = _rules.emplace(
                     make_pair(
-                        product, pattern.rule(
-                            product, RuleRetriever {*this},
-                            ProductPublisher {_products, product}
+                        productName, pattern.rule(
+                            productName, RuleRetriever {*this},
+                            ProductPublisher {_products, productName}
                         )));
                 assert(result.second);
                 return result.first->second;
             }
         }
         stringstream message;
-        message << "No rule found for \"" << product << "\".";
+        message << "No rule found for \"" << productName << "\".";
         throw DepException(message.str());
     }
 }

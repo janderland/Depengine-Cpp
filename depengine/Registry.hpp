@@ -41,10 +41,12 @@ private:
     };
 
 public:
-    const Rule& rule(const string& product);
+    const Rule& rule(const string& productName);
 
     void rule(const RuleDetails& details);
 
+    // TODO: Return a lazy-loading file contents if the rule
+    // rule found only produces a file on disk.
     template<class T> T product(const string& name)
     {
         auto iter = _products.find(name);
