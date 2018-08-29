@@ -1,5 +1,5 @@
-cmake-*
-*.so*
+treet.run
 source1
 source2
 output
+*.so*
