@@ -8,5 +8,8 @@ all: $(OUTPUT)
 run: $(OUTPUT)
 	@./$(OUTPUT)
 
+clean:
+	@rm $(OUTPUT)
+
 $(OUTPUT): $(SOURCES)
 	@$(CXX) $(CXXFLAGS) $^ -o $@
