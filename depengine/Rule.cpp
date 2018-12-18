@@ -4,38 +4,35 @@
 #include "Rule.hpp"
 
 
-namespace depengine
-{
+namespace depengine {
 
 
-void Rule::runDependencies() const
-{
-    for (const auto& dependency : _details._dependencies) {
-        const Rule* rule = nullptr;
-        try {
-            // TODO: Improve this control flow.
-            const Rule& ruleRef = _getter(dependency);
-            rule = &ruleRef;
-        }
-        catch (const DepException& err) {
-            cout << err.what() << endl;
-        }
-        if (rule) {
-            rule->run();
-        }
+void Rule::runDependencies() const {
+  for (const auto& dependency : _details._dependencies) {
+    const Rule* rule = nullptr;
+    try {
+      // TODO: Improve this control flow.
+      const Rule& ruleRef = _getter(dependency);
+      rule = &ruleRef;
     }
+    catch (const DepException& err) {
+      cout << err.what() << endl;
+    }
+    if (rule) {
+      rule->run();
+    }
+  }
 }
 
 
-void Rule::run() const
-{
-    runDependencies();
-    if (_details.mustExecute()) {
-        const auto result = _details.execute();
-        if (!result.empty()) {
-            _setter(result);
-        }
+void Rule::run() const {
+  runDependencies();
+  if (_details.mustExecute()) {
+    const auto result = _details.execute();
+    if (!result.empty()) {
+      _setter(result);
     }
+  }
 }
 
 

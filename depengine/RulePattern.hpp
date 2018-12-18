@@ -9,32 +9,30 @@
 #include "Rule.hpp"
 
 
-namespace depengine
-{
+namespace depengine {
 using namespace std;
 
 
-class RulePattern
-{
+class RulePattern {
 private:
-    const regex _prodPattern;
-    const vector<string> _depPatterns;
-    const Action _action;
+  const regex _prodPattern;
+  const vector<string> _depPatterns;
+  const Action _action;
 
-    vector<string> dependencies(
-        const string& product
-    ) const;
+  vector<string> dependencies(
+    const string& product
+  ) const;
 
 public:
-    RulePattern(const RuleDetails& details);
+  RulePattern(const RuleDetails& details);
 
-    bool matches(const string& product) const;
+  bool matches(const string& product) const;
 
-    Rule rule(
-        const string& product,
-        const function<const Rule&(string)>& getter,
-        const function<void(any)>& setter
-    ) const;
+  Rule rule(
+    const string& product,
+    const function<const Rule&(string)>& getter,
+    const function<void(any)>& setter
+  ) const;
 };
 
 

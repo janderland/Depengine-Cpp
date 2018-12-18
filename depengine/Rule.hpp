@@ -3,23 +3,21 @@
 #include "RuleDetails.hpp"
 
 
-namespace depengine
-{
+namespace depengine {
 using namespace boost;
 using namespace std;
 
 
-class Rule
-{
+class Rule {
 private:
-    void runDependencies() const;
+  void runDependencies() const;
 
 public:
-    const function<const Rule&(string)> _getter;
-    const function<void(any)> _setter;
-    const RuleDetails _details;
+  const function<const Rule&(string)> _getter;
+  const function<void(any)> _setter;
+  const RuleDetails _details;
 
-    void run() const;
+  void run() const;
 };
 
 

@@ -8,23 +8,21 @@
 #include "Action.hpp"
 
 
-namespace depengine
-{
-    using namespace boost;
-    using namespace std;
+namespace depengine {
+  using namespace boost;
+  using namespace std;
 
 
-    class RuleDetails
-    {
-    public:
-        const string _product;
-        const vector<string> _dependencies;
-        const Action _action;
+  class RuleDetails {
+  public:
+    const string _product;
+    const vector<string> _dependencies;
+    const Action _action;
 
-        bool mustExecute() const;
+    bool mustExecute() const;
 
-        any execute() const;
-    };
+    any execute() const;
+  };
 
 
 } // namespace depengine
